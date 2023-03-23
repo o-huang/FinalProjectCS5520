@@ -16,19 +16,91 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentUser" />
+        app:layout_constraintTop_toBottomOf="@+id/achievements" />
 
     <TextView
         android:id="@+id/currentUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginEnd="159dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginEnd="163dp"
         android:text="TextView"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
+        app:layout_constraintBottom_toTopOf="@+id/recordWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="158dp"
+        android:layout_marginEnd="159dp"
+        android:text="User"
+        app:layout_constraintBottom_toTopOf="@+id/share"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recordWeight" />
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="157dp"
+        android:layout_marginEnd="160dp"
+        android:text="Share"
+        app:layout_constraintBottom_toTopOf="@+id/history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user" />
+
+    <Button
+        android:id="@+id/photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="157dp"
+        android:layout_marginEnd="160dp"
+        android:text="Photo"
+        app:layout_constraintBottom_toTopOf="@+id/achievements"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/history" />
+
+    <Button
+        android:id="@+id/achievements"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="158dp"
+        android:layout_marginEnd="159dp"
+        android:text="Achievements"
+        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photo" />
+
+    <Button
+        android:id="@+id/history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="157dp"
+        android:layout_marginEnd="160dp"
+        android:text="History"
+        app:layout_constraintBottom_toTopOf="@+id/photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share" />
+
+    <Button
+        android:id="@+id/recordWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="157dp"
+        android:layout_marginEnd="160dp"
+        android:text="Record Weight"
+        app:layout_constraintBottom_toTopOf="@+id/user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentUser" />
 </androidx.constraintlayout.widget.ConstraintLayout>
