@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
                 openRegisterPage();
             }
         });
+
+
+
+
     }
 
     public void openLoginPage() {

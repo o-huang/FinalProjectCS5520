@@ -16,6 +16,16 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONException;
+
+import edu.northeastern.finalprojectcs5520.models.User;
+
 
 public class Register extends AppCompatActivity {
 
@@ -26,6 +36,8 @@ public class Register extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
+    FirebaseDatabase mDatabase;
+    DatabaseReference reference;
 
     @Override
     public void onStart() {
@@ -49,6 +61,10 @@ public class Register extends AppCompatActivity {
 
         registerButton = findViewById(R.id.registerButton);
         loginButton = findViewById(R.id.loginButton);
+
+        //Instance of database
+        mDatabase = FirebaseDatabase.getInstance();
+        reference = mDatabase.getReference("users");
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +95,19 @@ public class Register extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Register.this, "Register Successful.",
                                             Toast.LENGTH_SHORT).show();
+
+                                    User user = new User(username);
+                                    reference.child(username).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(getApplicationContext(),"Added user!",Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(getApplicationContext(),"Unable to reset player1!",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
                                     //Goes to login page if successful
                                     openUserPage();
                                 } else {

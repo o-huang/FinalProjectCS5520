@@ -18,6 +18,9 @@ public class UserMainActivity extends AppCompatActivity {
     FirebaseUser currentUser;
     FirebaseAuth auth;
 
+
+    private Button recordWeight;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +49,25 @@ public class UserMainActivity extends AppCompatActivity {
                 openLoginPage();
             }
         });
+
+        recordWeight = findViewById(R.id.recordWeight);
+        recordWeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRecordWeightPage();
+            }
+        });
     }
 
     public void openLoginPage() {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
         finish();
+    }
+
+    public void openRecordWeightPage() {
+        Intent intent = new Intent(this, RecordWeight.class);
+        startActivity(intent);
+
     }
 }
