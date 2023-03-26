@@ -8,7 +8,7 @@
     tools:context=".RecordWeight">
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
+        android:id="@+id/bodyWeight"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_monitor_weight_24"
@@ -16,13 +16,13 @@
         android:ems="10"
         android:hint="Body Weight"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal2"
+        app:layout_constraintBottom_toTopOf="@+id/bodyFat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal2"
+        android:id="@+id/bodyFat"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_percent_24"
@@ -30,29 +30,29 @@
         android:ems="10"
         android:hint="Body Fat %"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintBottom_toTopOf="@+id/sharePublic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+        app:layout_constraintTop_toBottomOf="@+id/bodyWeight" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/sharePublic"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Share Public"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal2" />
+        app:layout_constraintTop_toBottomOf="@+id/bodyFat" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/sharePublic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
