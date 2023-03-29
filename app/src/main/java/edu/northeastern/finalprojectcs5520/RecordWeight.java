@@ -54,20 +54,20 @@ public class RecordWeight extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               saveRecordedWeight();
+                saveRecordedWeight();
             }
         });
     }
 
 
-    public void saveRecordedWeight(){
+    public void saveRecordedWeight() {
         //Get date with format
         SimpleDateFormat formatter = new SimpleDateFormat("MM_dd_yyyy");
         Date date = new Date();
         String formattedDate = formatter.format(date);
 
         //Check that body weight and body fat fields are not empty
-        if (TextUtils.isEmpty(bodyWeight.getText()) || TextUtils.isEmpty(bodyFat.getText()) ) {
+        if (TextUtils.isEmpty(bodyWeight.getText()) || TextUtils.isEmpty(bodyFat.getText())) {
             Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -79,8 +79,8 @@ public class RecordWeight extends AppCompatActivity {
 
         //Initialize new hashmap with info from our fields
         Map info = new HashMap<>();
-        info.put("recordWeight",bodyWeightValue);
-        info.put("bodyFatPercent",bodyFatValue);
+        info.put("recordWeight", bodyWeightValue);
+        info.put("bodyFatPercent", bodyFatValue);
         info.put("public", sharePublicValue);
 
         //Get current username
@@ -94,9 +94,9 @@ public class RecordWeight extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     openUserPage();
-                    Toast.makeText(getApplicationContext(),"Successfully Recorded Weight!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Successfully Recorded Weight!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(),"Failed To Record Weight!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Failed To Record Weight!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

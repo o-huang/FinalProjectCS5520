@@ -1,5 +1,4 @@
-package edu.northeastern.finalprojectcs5520;
-
+package edu.northeastern.finalprojectcs5520.sharePublicActivity;
 
 
 import android.view.LayoutInflater;
@@ -10,11 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import edu.northeastern.finalprojectcs5520.R;
+
 public class SharePublicRecyclerAdapter extends RecyclerView.Adapter<SharePublicViewHolder> {
 
     private ArrayList<SharePublicInfo> sharePublicList;
 
-    public SharePublicRecyclerAdapter(ArrayList<SharePublicInfo> sharePublicList){
+    public SharePublicRecyclerAdapter(ArrayList<SharePublicInfo> sharePublicList) {
         this.sharePublicList = sharePublicList;
     }
 

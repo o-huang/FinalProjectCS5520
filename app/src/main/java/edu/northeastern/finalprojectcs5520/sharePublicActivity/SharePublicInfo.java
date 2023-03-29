@@ -1,4 +1,4 @@
-package edu.northeastern.finalprojectcs5520;
+package edu.northeastern.finalprojectcs5520.sharePublicActivity;
 
 public class SharePublicInfo {
 
@@ -46,7 +46,6 @@ public class SharePublicInfo {
     public void setBodyFat(String bodyFat) {
         this.bodyFat = bodyFat;
     }
-
 
 
 }

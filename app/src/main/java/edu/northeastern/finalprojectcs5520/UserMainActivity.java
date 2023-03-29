@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import edu.northeastern.finalprojectcs5520.sharePublicActivity.SharePublic;
+
 public class UserMainActivity extends AppCompatActivity {
 
     TextView currentUserName;

@@ -1,4 +1,4 @@
-package edu.northeastern.finalprojectcs5520;
+package edu.northeastern.finalprojectcs5520.sharePublicActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import edu.northeastern.finalprojectcs5520.R;
 
 public class SharePublic extends AppCompatActivity {
 
@@ -43,22 +45,17 @@ public class SharePublic extends AppCompatActivity {
                     HashMap myList = (HashMap) dataSnapshot.child("recordWeights").getValue();
 
                     myList.forEach((key, value) -> {
-                        if ((Boolean)((HashMap)value).get("public") == true) {
-                            System.out.println("in herererere");
+                        if ((Boolean) ((HashMap) value).get("public")) {
+
                             String date = key.toString();
-                            String bodyWeight= ((HashMap)value).get("recordWeight").toString();
-                            String bodyFat = ((HashMap)value).get("bodyFatPercent").toString();
+                            String bodyWeight = ((HashMap) value).get("recordWeight").toString();
+                            String bodyFat = ((HashMap) value).get("bodyFatPercent").toString();
 
-                            sharePublicUserInfoList.add(new SharePublicInfo(username,date,bodyWeight,bodyFat));
+                            sharePublicUserInfoList.add(new SharePublicInfo(username, date, bodyWeight, bodyFat));
                         }
-
                     });
-
-
                 }
                 setAdapter();
-
-
             }
 
             @Override
@@ -67,11 +64,9 @@ public class SharePublic extends AppCompatActivity {
             }
         });
 
-        System.out.println("hiiiiiiiii");
-        System.out.println(sharePublicUserInfoList);
     }
 
-    private void setAdapter(){
+    private void setAdapter() {
         SharePublicRecyclerAdapter adapter = new SharePublicRecyclerAdapter(sharePublicUserInfoList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 

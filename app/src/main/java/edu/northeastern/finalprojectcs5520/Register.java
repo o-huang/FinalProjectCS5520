@@ -101,9 +101,9 @@ public class Register extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                Toast.makeText(getApplicationContext(),"Added user!",Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), "Added user!", Toast.LENGTH_SHORT).show();
                                             } else {
-                                                Toast.makeText(getApplicationContext(),"Unable to reset player1!",Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), "Unable to reset player1!", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
