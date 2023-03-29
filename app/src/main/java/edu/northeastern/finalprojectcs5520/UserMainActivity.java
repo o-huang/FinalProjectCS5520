@@ -20,6 +20,7 @@ public class UserMainActivity extends AppCompatActivity {
 
 
     private Button recordWeight;
+    private Button sharePublic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,14 @@ public class UserMainActivity extends AppCompatActivity {
                 openRecordWeightPage();
             }
         });
+
+        sharePublic = findViewById(R.id.share);
+        sharePublic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSharePublicPage();
+            }
+        });
     }
 
     public void openLoginPage() {
@@ -67,6 +76,12 @@ public class UserMainActivity extends AppCompatActivity {
 
     public void openRecordWeightPage() {
         Intent intent = new Intent(this, RecordWeight.class);
+        startActivity(intent);
+
+    }
+
+    public void openSharePublicPage() {
+        Intent intent = new Intent(this, SharePublic.class);
         startActivity(intent);
 
     }
