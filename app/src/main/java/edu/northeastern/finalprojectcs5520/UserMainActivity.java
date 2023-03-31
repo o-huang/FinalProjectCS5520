@@ -29,6 +29,7 @@ public class UserMainActivity extends AppCompatActivity {
     String username;
     private Button recordWeight;
     private Button sharePublic;
+    private Button userDisplay;
 
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
@@ -105,6 +106,16 @@ public class UserMainActivity extends AppCompatActivity {
                 openSharePublicPage();
             }
         });
+
+        userDisplay = findViewById(R.id.user);
+        userDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUserDisplayPage();
+            }
+        });
+
+
     }
 
     public void openUserPage() {
@@ -133,6 +144,13 @@ public class UserMainActivity extends AppCompatActivity {
 
     public void openSharePublicPage() {
         Intent intent = new Intent(this, SharePublic.class);
+        startActivity(intent);
+
+    }
+
+
+    public void openUserDisplayPage() {
+        Intent intent = new Intent(this, UserDisplay.class);
         startActivity(intent);
 
     }
