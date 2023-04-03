@@ -48,10 +48,15 @@ public class SharePublic extends AppCompatActivity {
                         if ((Boolean) ((HashMap) value).get("public")) {
 
                             String date = key.toString();
-                            String bodyWeight = ((HashMap) value).get("recordWeight").toString();
-                            String bodyFat = ((HashMap) value).get("bodyFatPercent").toString();
 
-                            sharePublicUserInfoList.add(new SharePublicInfo(username, date, bodyWeight, bodyFat));
+                            String[] dateList = date.split("_");
+                            System.out.println(dateList);
+                            String dateCorrectFormat = dateList[0] +"/"+dateList[1]+"/"+dateList[2] ;
+
+                            String bodyWeight = "Weight: " + (String) ((HashMap) value).get("recordWeight");
+                            String bodyFat = "Body Fat: " + (String) ((HashMap) value).get("bodyFatPercent");
+
+                            sharePublicUserInfoList.add(new SharePublicInfo(username, dateCorrectFormat, bodyWeight, bodyFat));
                         }
                     });
                 }
