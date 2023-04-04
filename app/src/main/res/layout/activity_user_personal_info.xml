@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp"
+    tools:context=".UserPersonalInfo">
+
+    <TextView
+        android:id="@+id/userPersonalInfoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Tell Me About Yourself"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#559CD5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Age"
+        android:layout_width="331dp"
+        android:layout_height="60dp"
+        android:drawableStart="@drawable/ic_baseline_person_pin_24"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Age"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/heightFeet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userPersonalInfoTitle"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <EditText
+        android:id="@+id/heightFeet"
+        android:layout_width="331dp"
+        android:layout_height="60dp"
+        android:drawableStart="@drawable/ic_baseline_height_24"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Height feet"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/heightInches"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Age"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <EditText
+        android:id="@+id/heightInches"
+        android:layout_width="331dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:hint="Height Inches"
+        android:drawableStart="@drawable/ic_baseline_height_24"
+        android:drawablePadding="10dp"
+        android:inputType="numberDecimal"
+
+        app:layout_constraintBottom_toTopOf="@+id/currentWeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heightFeet"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <EditText
+        android:id="@+id/currentWeight"
+        android:layout_width="331dp"
+        android:layout_height="60dp"
+        android:drawableStart="@drawable/ic_baseline_monitor_weight_24"
+        android:drawablePadding="10dp"
+        android:drawableTint="#559CD5"
+        android:ems="10"
+        android:hint="Current Weight"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heightInches"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:backgroundTint="#559CD5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentWeight"
+        app:layout_constraintVertical_bias="0.5" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
