@@ -3,6 +3,7 @@ package edu.northeastern.finalprojectcs5520;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ public class UserDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_display);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
         auth = FirebaseAuth.getInstance();
         currentUserName = findViewById(R.id.currentUser);
