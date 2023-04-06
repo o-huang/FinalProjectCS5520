@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 
@@ -109,7 +110,30 @@ public class Register extends AppCompatActivity {
                                     });
 
                                     //Goes to login page if successful
-                                    openUserPage();
+
+                                    DatabaseReference userReference = reference.child(username);
+
+                                    userReference.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Boolean enteredPersonalInfoBoolean = (Boolean) snapshot.child("personalInfoEntered").getValue();
+
+
+                                            if (enteredPersonalInfoBoolean) {
+                                                //If user entered personal info go to user page
+                                                openUserPage();
+                                            } else {
+                                                //If not go to enter user personal info page
+                                                openEnterUserPersonalInfoPage();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
                                 } else {
                                     // If sign in fails, display a message to the user.
 
@@ -144,5 +168,10 @@ public class Register extends AppCompatActivity {
         finish();
     }
 
+    public void openEnterUserPersonalInfoPage() {
+        Intent intent = new Intent(this, UserPersonalInfo.class);
+        startActivity(intent);
+        finish();
+    }
 
 }

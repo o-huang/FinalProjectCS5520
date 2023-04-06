@@ -16,6 +16,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -25,6 +30,9 @@ public class Login extends AppCompatActivity {
     Button loginButton;
 
     FirebaseAuth mAuth;
+    FirebaseDatabase mDatabase;
+    DatabaseReference reference;
+
 
     @Override
     public void onStart() {
@@ -48,6 +56,9 @@ public class Login extends AppCompatActivity {
 
         registerButton = findViewById(R.id.registerButton);
         loginButton = findViewById(R.id.loginButton);
+
+        mDatabase = FirebaseDatabase.getInstance();
+        reference = mDatabase.getReference("users");
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,8 +89,32 @@ public class Login extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Toast.makeText(Login.this, "Login Successful",
                                             Toast.LENGTH_SHORT).show();
-                                    // If successful we go into user page
-                                    openUserPage();
+
+
+                                    DatabaseReference userReference = reference.child(username);
+
+                                    userReference.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Boolean enteredPersonalInfoBoolean = (Boolean) snapshot.child("personalInfoEntered").getValue();
+
+
+                                            if (enteredPersonalInfoBoolean) {
+                                                //If user entered personal info go to user page
+                                                openUserPage();
+
+                                            } else {
+                                                //If not go to enter user personal info page
+                                                openEnterUserPersonalInfoPage();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
 
                                 } else {
                                     // If sign in fails, display a message to the user.
@@ -111,4 +146,11 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void openEnterUserPersonalInfoPage() {
+        Intent intent = new Intent(this, UserPersonalInfo.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

@@ -10,6 +10,7 @@ public class User {
 
     public String username;
     public Map<String, Map> recordWeights;
+    public Boolean personalInfoEntered;
 //    public ArrayList<HashMap> receivedSticker;
 
     public User(String username){
@@ -20,6 +21,7 @@ public class User {
 
         this.username = username;
         this.recordWeights = new HashMap<String, Map>();
+        this.personalInfoEntered = false;
 
         Map info = new HashMap<>();
         info.put("recordWeight","150");
