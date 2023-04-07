@@ -13,6 +13,12 @@
         android:theme="@style/Theme.FinalProjectCS5520"
         tools:targetApi="31">
         <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".History"
+            android:exported="false" />
+        <activity
             android:name=".sharePublicActivity.SharePublic"
             android:exported="false">
             <meta-data

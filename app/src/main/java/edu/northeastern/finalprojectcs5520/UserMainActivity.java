@@ -19,10 +19,12 @@ public class UserMainActivity extends AppCompatActivity {
     Button logoutButton;
     FirebaseUser currentUser;
     FirebaseAuth auth;
+    Button historyButton;
 
 
     private Button recordWeight;
     private Button sharePublic;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,18 @@ public class UserMainActivity extends AppCompatActivity {
                 openSharePublicPage();
             }
         });
+
+        historyButton = findViewById(R.id.historyButton);
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHistoryPage();
+            }
+        });
     }
+
+
+
 
     public void openLoginPage() {
         Intent intent = new Intent(this, Login.class);
@@ -86,5 +99,10 @@ public class UserMainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SharePublic.class);
         startActivity(intent);
 
+    }
+
+    public void openHistoryPage() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
     }
 }
