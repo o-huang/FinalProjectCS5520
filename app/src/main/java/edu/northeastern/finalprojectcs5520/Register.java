@@ -120,6 +120,7 @@ public class Register extends AppCompatActivity {
 
 
                                             if (enteredPersonalInfoBoolean) {
+
                                                 //If user entered personal info go to user page
                                                 openUserPage();
                                             } else {
@@ -171,7 +172,7 @@ public class Register extends AppCompatActivity {
     public void openEnterUserPersonalInfoPage() {
         Intent intent = new Intent(this, UserPersonalInfo.class);
         startActivity(intent);
-        finish();
+
     }
 
 }

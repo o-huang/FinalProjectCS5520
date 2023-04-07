@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/Age"
+        android:id="@+id/age"
         android:layout_width="331dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_person_pin_24"
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Age"
+        app:layout_constraintTop_toBottomOf="@+id/age"
         app:layout_constraintVertical_bias="0.5" />
 
     <EditText
@@ -79,7 +79,7 @@
         android:ems="10"
         android:hint="Current Weight"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/personalInfoSubmitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/personalInfoSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
