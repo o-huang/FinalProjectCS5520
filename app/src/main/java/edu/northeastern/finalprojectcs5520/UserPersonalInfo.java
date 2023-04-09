@@ -39,6 +39,12 @@ public class UserPersonalInfo extends AppCompatActivity {
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
 
+    String username;
+    String ageText;
+    String heightFeetText;
+    String heightInchesText;
+    String currentWeightText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,34 +87,24 @@ public class UserPersonalInfo extends AppCompatActivity {
         //Get current username
         currentUser = auth.getCurrentUser();
         String email = currentUser.getEmail();
-        String username = email.split("@")[0];
+        username = email.split("@")[0];
 
-
-        reference.addValueEventListener(new ValueEventListener() {
+        getUserInfo(new FireStoreCallback() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                HashMap currentUser = (HashMap) snapshot.child(username).getValue();
-
-                currentUser.put("currentWeight",currentWeightText);
-                currentUser.put("age",ageText);
-                currentUser.put("heightInches",heightInchesText);
-                currentUser.put("heightFeet",heightFeetText);
-                currentUser.put("personalInfoEntered",true);
-                reference.child(username).setValue(currentUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+            public void enterPersonalInfo(HashMap userInfo) {
+                reference.child(username).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        System.out.println("done");
 
                     }
                 });
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
+                openRecordWeightPage();
             }
         });
-        openRecordWeightPage();
+
+
     }
 
 
@@ -123,5 +119,33 @@ public class UserPersonalInfo extends AppCompatActivity {
         Intent intent = new Intent(this, RecordWeight.class);
         startActivity(intent);
         finish();
+    }
+
+    private void getUserInfo(FireStoreCallback fireStoreCallback) {
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                HashMap currentUser = (HashMap) snapshot.child(username).getValue();
+
+                currentUser.put("currentWeight", currentWeightText);
+                currentUser.put("age", ageText);
+                currentUser.put("heightInches", heightInchesText);
+                currentUser.put("heightFeet", heightFeetText);
+                currentUser.put("personalInfoEntered", true);
+                fireStoreCallback.enterPersonalInfo(currentUser);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("There was error");
+            }
+        });
+
+    }
+
+
+    private interface FireStoreCallback {
+        void enterPersonalInfo(HashMap userInfo);
     }
 }
