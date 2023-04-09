@@ -45,6 +45,7 @@ public class Register extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if (currentUser != null) {
             openUserPage();
         }
@@ -109,31 +110,9 @@ public class Register extends AppCompatActivity {
                                         }
                                     });
 
-                                    //Goes to login page if successful
+                                    //Goes to login page if enter user info Page
+                                    openUserPage();
 
-                                    DatabaseReference userReference = reference.child(username);
-
-                                    userReference.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            Boolean enteredPersonalInfoBoolean = (Boolean) snapshot.child("personalInfoEntered").getValue();
-
-
-                                            if (enteredPersonalInfoBoolean) {
-
-                                                //If user entered personal info go to user page
-                                                openUserPage();
-                                            } else {
-                                                //If not go to enter user personal info page
-                                                openEnterUserPersonalInfoPage();
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
 
                                 } else {
                                     // If sign in fails, display a message to the user.

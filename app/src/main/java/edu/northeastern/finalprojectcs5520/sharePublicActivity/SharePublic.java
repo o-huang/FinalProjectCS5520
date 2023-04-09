@@ -43,22 +43,24 @@ public class SharePublic extends AppCompatActivity {
                     String username = dataSnapshot.child("username").getValue().toString();
 
                     HashMap myList = (HashMap) dataSnapshot.child("recordWeights").getValue();
+                    if(myList!= null){
+                        myList.forEach((key, value) -> {
+                            if ((Boolean) ((HashMap) value).get("public")) {
 
-                    myList.forEach((key, value) -> {
-                        if ((Boolean) ((HashMap) value).get("public")) {
+                                String date = key.toString();
 
-                            String date = key.toString();
+                                String[] dateList = date.split("_");
+                                System.out.println(dateList);
+                                String dateCorrectFormat = dateList[0] +"/"+dateList[1]+"/"+dateList[2] ;
 
-                            String[] dateList = date.split("_");
-                            System.out.println(dateList);
-                            String dateCorrectFormat = dateList[0] +"/"+dateList[1]+"/"+dateList[2] ;
+                                String bodyWeight = "Weight: " + (String) ((HashMap) value).get("recordWeight");
+                                String bodyFat = "Body Fat: " + (String) ((HashMap) value).get("bodyFatPercent");
 
-                            String bodyWeight = "Weight: " + (String) ((HashMap) value).get("recordWeight");
-                            String bodyFat = "Body Fat: " + (String) ((HashMap) value).get("bodyFatPercent");
+                                sharePublicUserInfoList.add(new SharePublicInfo(username, dateCorrectFormat, bodyWeight, bodyFat));
+                            }
+                        });
+                    }
 
-                            sharePublicUserInfoList.add(new SharePublicInfo(username, dateCorrectFormat, bodyWeight, bodyFat));
-                        }
-                    });
                 }
                 setAdapter();
             }

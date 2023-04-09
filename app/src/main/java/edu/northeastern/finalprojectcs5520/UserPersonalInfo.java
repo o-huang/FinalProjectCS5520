@@ -15,8 +15,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+
+import edu.northeastern.finalprojectcs5520.models.User;
 
 public class UserPersonalInfo extends AppCompatActivity {
 
@@ -31,6 +38,7 @@ public class UserPersonalInfo extends AppCompatActivity {
     FirebaseUser currentUser;
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,79 +78,49 @@ public class UserPersonalInfo extends AppCompatActivity {
         String heightInchesText = String.valueOf(heightInches.getText());
         String currentWeightText = String.valueOf(currentWeight.getText());
 
-        System.out.println(ageText);
-        System.out.println(heightFeetText);
-        System.out.println(heightInchesText);
-        System.out.println(currentWeightText);
-
         //Get current username
         currentUser = auth.getCurrentUser();
         String email = currentUser.getEmail();
         String username = email.split("@")[0];
 
 
-        reference.child(username).child("age").setValue(ageText).addOnCompleteListener(new OnCompleteListener<Void>() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    System.out.println("Successfully added age");
-                } else {
-                    Toast.makeText(getApplicationContext(), "Failed To Record age!", Toast.LENGTH_SHORT).show();
-                }
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                HashMap currentUser = (HashMap) snapshot.child(username).getValue();
+
+                currentUser.put("currentWeight",currentWeightText);
+                currentUser.put("age",ageText);
+                currentUser.put("heightInches",heightInchesText);
+                currentUser.put("heightFeet",heightFeetText);
+                currentUser.put("personalInfoEntered",true);
+                reference.child(username).setValue(currentUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        System.out.println("done");
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-
-        reference.child(username).child("heightFeet").setValue(heightFeetText).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    System.out.println("Successfully added heightFeet");
-                } else {
-                    Toast.makeText(getApplicationContext(), "Failed To Record height feet!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        reference.child(username).child("heightInches").setValue(heightInchesText).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    System.out.println("Successfully added height inches");
-                } else {
-                    Toast.makeText(getApplicationContext(), "Failed To Record height inches!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        reference.child(username).child("currentWeight").setValue(currentWeightText).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    System.out.println("Successfully added current weight");
-                } else {
-                    Toast.makeText(getApplicationContext(), "Failed To Record Current Weight!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        reference.child(username).child("personalInfoEntered").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    System.out.println("Successfully set personal info entered to true");
-                } else {
-                    Toast.makeText(getApplicationContext(), "Failed To set personal info to true!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        openUserPage();
+        openRecordWeightPage();
     }
 
 
     public void openUserPage() {
         //Directs user to user page.
         Intent intent = new Intent(this, UserMainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void openRecordWeightPage() {
+        Intent intent = new Intent(this, RecordWeight.class);
         startActivity(intent);
         finish();
     }

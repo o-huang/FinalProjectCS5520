@@ -32,13 +32,14 @@ public class Login extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
-
+    Boolean checkPersonalInfo;
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if (currentUser != null) {
             openUserPage();
         }
@@ -90,31 +91,7 @@ public class Login extends AppCompatActivity {
                                     Toast.makeText(Login.this, "Login Successful",
                                             Toast.LENGTH_SHORT).show();
 
-
-                                    DatabaseReference userReference = reference.child(username);
-
-                                    userReference.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            Boolean enteredPersonalInfoBoolean = (Boolean) snapshot.child("personalInfoEntered").getValue();
-
-
-                                            if (enteredPersonalInfoBoolean) {
-                                                //If user entered personal info go to user page
-                                                openUserPage();
-
-                                            } else {
-                                                //If not go to enter user personal info page
-                                                openEnterUserPersonalInfoPage();
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-
+                                    openUserPage();
 
                                 } else {
                                     // If sign in fails, display a message to the user.
@@ -124,6 +101,7 @@ public class Login extends AppCompatActivity {
                                 }
                             }
                         });
+
             }
         });
 

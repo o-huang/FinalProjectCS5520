@@ -11,6 +11,11 @@ public class User {
     public String username;
     public Map<String, Map> recordWeights;
     public Boolean personalInfoEntered;
+    public int age;
+    public int heightFeet;
+    public int heightInches;
+    public int currentWeight;
+
 //    public ArrayList<HashMap> receivedSticker;
 
     public User(String username){
@@ -23,12 +28,12 @@ public class User {
         this.recordWeights = new HashMap<String, Map>();
         this.personalInfoEntered = false;
 
-        Map info = new HashMap<>();
-        info.put("recordWeight","150");
-        info.put("bodyFatPercent","20");
-        info.put("public", false);
-
-        recordWeights.put(formattedDate,info);
+//        Map info = new HashMap<>();
+//        info.put("recordWeight","150");
+//        info.put("bodyFatPercent","20");
+//        info.put("public", false);
+//
+//        recordWeights.put(formattedDate,info);
 //        sentSticker.put("1",0);
 //        sentSticker.put("2",0);
 //        sentSticker.put("3",0);
