@@ -33,6 +33,7 @@ public class SharePublicRecyclerAdapter extends RecyclerView.Adapter<SharePublic
         holder.date.setText(sharePublicList.get(position).getDate());
         holder.bodyWeight.setText(sharePublicList.get(position).getBodyWeight());
         holder.bodyFat.setText(sharePublicList.get(position).getBodyFat());
+        holder.bodyBmi.setText(sharePublicList.get(position).getBodyBmi());
     }
 
     @Override

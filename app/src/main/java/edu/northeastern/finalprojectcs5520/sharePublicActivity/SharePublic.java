@@ -55,8 +55,8 @@ public class SharePublic extends AppCompatActivity {
 
                                 String bodyWeight = "Weight: " + (String) ((HashMap) value).get("recordWeight");
                                 String bodyFat = "Body Fat: " + (String) ((HashMap) value).get("bodyFatPercent");
-
-                                sharePublicUserInfoList.add(new SharePublicInfo(username, dateCorrectFormat, bodyWeight, bodyFat));
+                                String bodyBmi = "Body Bmi: " + (String) ((HashMap) value).get("bmi");
+                                sharePublicUserInfoList.add(new SharePublicInfo(username, dateCorrectFormat, bodyWeight, bodyFat,bodyBmi));
                             }
                         });
                     }

@@ -47,28 +47,7 @@
             android:textSize="12sp"
             />
 
-<!--        <TextView-->
-<!--            android:id="@+id/public_bodyweight"-->
 
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="1dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:textSize="15sp"-->
-<!--            android:textColor="#000"-->
-
-<!--            android:text="Body Weight" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/public_bodyfat"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="1dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:textSize="15sp"-->
-<!--            android:textColor="#000"-->
-
-<!--            android:text="Body Fat" />-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,23 +57,34 @@
                 android:id="@+id/public_bodyweight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight=".3"
                 android:layout_margin="5dp"
                 android:ellipsize="end"
 
                 android:textSize="15sp"
-                android:text="textview1" />
+                android:text="Body Weight:" />
 
             <TextView
                 android:id="@+id/public_bodyfat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
+                android:layout_weight=".3"
                 android:layout_margin="5dp"
                 android:ellipsize="end"
 
                 android:textSize="15sp"
-                android:text="textview2" />
+                android:text="Body fat:" />
+
+            <TextView
+                android:id="@+id/public_bmi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:layout_margin="5dp"
+                android:ellipsize="end"
+
+                android:textSize="15sp"
+                android:text="Bmi:" />
 
 
         </LinearLayout>

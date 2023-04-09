@@ -7,11 +7,15 @@ public class SharePublicInfo {
     private String bodyWeight;
     private String bodyFat;
 
-    public SharePublicInfo(String username, String date, String bodyWeight, String bodyFat) {
+
+    private String bodyBmi;
+
+    public SharePublicInfo(String username, String date, String bodyWeight, String bodyFat, String bodyBmi) {
         this.username = username;
         this.date = date;
         this.bodyWeight = bodyWeight;
         this.bodyFat = bodyFat;
+        this.bodyBmi = bodyBmi;
     }
 
 
@@ -45,6 +49,14 @@ public class SharePublicInfo {
 
     public void setBodyFat(String bodyFat) {
         this.bodyFat = bodyFat;
+    }
+
+    public String getBodyBmi() {
+        return bodyBmi;
+    }
+
+    public void setBodyBmi(String bodyBmi) {
+        this.bodyBmi = bodyBmi;
     }
 
 

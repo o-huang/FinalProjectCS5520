@@ -16,8 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,13 +39,19 @@ public class RecordWeight extends AppCompatActivity {
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
 
+    String username;
+    String bodyWeightValue;
+    String bodyFatValue ;
+    boolean sharePublicValue ;
+    Map info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_weight);
 
-        bodyWeight = findViewById(R.id.bodyFat);
-        bodyFat = findViewById(R.id.bodyWeight);
+        bodyWeight = findViewById(R.id.bodyWeight);
+        bodyFat = findViewById(R.id.bodyFat);
         sharePublic = findViewById(R.id.sharePublic);
         submitButton = findViewById(R.id.submitButton);
 
@@ -73,12 +82,14 @@ public class RecordWeight extends AppCompatActivity {
         }
 
         //Get inputs from the fields
-        String bodyWeightValue = String.valueOf(bodyWeight.getText());
-        String bodyFatValue = String.valueOf(bodyFat.getText());
-        boolean sharePublicValue = sharePublic.isChecked();
+        bodyWeightValue = String.valueOf(bodyWeight.getText());
+        bodyFatValue = String.valueOf(bodyFat.getText());
+        sharePublicValue = sharePublic.isChecked();
+
+
 
         //Initialize new hashmap with info from our fields
-        Map info = new HashMap<>();
+        info = new HashMap<>();
         info.put("recordWeight", bodyWeightValue);
         info.put("bodyFatPercent", bodyFatValue);
         info.put("public", sharePublicValue);
@@ -86,20 +97,30 @@ public class RecordWeight extends AppCompatActivity {
         //Get current username
         currentUser = auth.getCurrentUser();
         String email = currentUser.getEmail();
-        String username = email.split("@")[0];
+        username = email.split("@")[0];
 
-        //Save the hashmap we created into user database
-        reference.child(username).child("recordWeights").child(formattedDate).setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+        calculateBmiCallBack(new FireStoreCallback() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    openUserPage();
-                    Toast.makeText(getApplicationContext(), "Successfully Recorded Weight!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Failed To Record Weight!", Toast.LENGTH_SHORT).show();
-                }
+            public void calculateBmi(String bmi) {
+
+                System.out.println(bmi);
+                info.put("bmi",bmi);
+
+                reference.child(username).child("recordWeights").child(formattedDate).setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            openUserPage();
+                            Toast.makeText(getApplicationContext(), "Successfully Recorded Weight!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Failed To Record Weight!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
+
     }
 
 
@@ -109,4 +130,36 @@ public class RecordWeight extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    private void calculateBmiCallBack(FireStoreCallback fireStoreCallback){
+
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String heightInches = (String) snapshot.child(username).child("heightInches").getValue();
+                String heightFeet = (String) snapshot.child(username).child("heightFeet").getValue();
+
+                float totalHeight = Float.parseFloat(heightInches) + (Float.parseFloat(heightFeet)  * 12);
+
+                float bmi = (Float.parseFloat(bodyWeightValue) / totalHeight / totalHeight) * 703;
+
+                String roundedBmi = String.format("%.2f",bmi);
+                fireStoreCallback.calculateBmi(roundedBmi);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("There was error");
+            }
+        });
+    }
+
+    private interface FireStoreCallback{
+        void calculateBmi(String bmi);
+    }
 }
+
