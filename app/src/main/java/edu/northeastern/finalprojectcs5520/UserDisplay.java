@@ -66,7 +66,7 @@ public class UserDisplay extends AppCompatActivity {
                 currentWeight = (String) snapshot.child("currentWeight").getValue();
                 Double height = Double.parseDouble(heightFeet) * 12 + Double.parseDouble(heightInches);
                 currentBMI = Double.parseDouble(currentWeight) / (height * height) * 703;
-
+                System.err.println("********** currentBMI "+ currentBMI);
             }
 
             @Override
