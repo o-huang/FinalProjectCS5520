@@ -72,25 +72,26 @@ public class UserDisplay extends AppCompatActivity {
                 heightFeet = (String) snapshot.child("heightFeet").getValue();
                 heightInches = (String) snapshot.child("heightInches").getValue();
                 currentWeight = (String) snapshot.child("currentWeight").getValue();
+
                 String currentFatRate = "";
                 snapshot.child("recordWeights").getChildren();
                 for(DataSnapshot data : snapshot.child("recordWeights").getChildren()) {
                     currentFatRate = data.child("bodyFatPercent").getValue().toString();
                 }
+                System.err.println("********** currentFatRate " + currentFatRate);
 
-                System.err.println("Fat Rate: " + currentFatRate);
                 Double height = Double.parseDouble(heightFeet) * 12 + Double.parseDouble(heightInches);
                 currentBMI = Double.parseDouble(currentWeight) / (height * height) * 703;
                 System.err.println("********** currentBMI "+ currentBMI);
 
-//                currentFatRate = (String) snapshot.child("recordWeights").getValue();
-//                System.err.println("********** currentFatRate "+ currentFatRate);
 
+                // Update the display current weight, BMI, and Fat Rate
                 curWeightDisplay = findViewById(R.id.current_weight);
                 curWeightDisplay.setText(currentWeight+ "lbs");
 
                 curBMIDisplay = findViewById(R.id.current_bmi);
-                curBMIDisplay.setText(String.format("%.2f", currentBMI));
+                if (curBMIDisplay != null) {
+                curBMIDisplay.setText(String.format("%.2f", currentBMI));}
 
                 curFatRateDisplay = findViewById(R.id.current_fat_rate);
                 curFatRateDisplay.setText(currentFatRate);
