@@ -79,10 +79,10 @@ public class UserPersonalInfo extends AppCompatActivity {
             return;
         }
 
-        String ageText = String.valueOf(age.getText());
-        String heightFeetText = String.valueOf(heightFeet.getText());
-        String heightInchesText = String.valueOf(heightInches.getText());
-        String currentWeightText = String.valueOf(currentWeight.getText());
+        ageText = String.valueOf(age.getText());
+        heightFeetText = String.valueOf(heightFeet.getText());
+        heightInchesText = String.valueOf(heightInches.getText());
+        currentWeightText = String.valueOf(currentWeight.getText());
 
         //Get current username
         currentUser = auth.getCurrentUser();
