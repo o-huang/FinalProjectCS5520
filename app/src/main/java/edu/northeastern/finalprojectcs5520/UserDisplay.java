@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.icu.number.Precision;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Formatter;
+
 public class UserDisplay extends AppCompatActivity {
     TextView currentUserName;
     FirebaseUser currentUser;
@@ -32,8 +35,13 @@ public class UserDisplay extends AppCompatActivity {
     String heightFeet;
     String heightInches;
     String currentWeight;
+    String currentFatRate;
 
     Double currentBMI;
+
+    TextView curWeightDisplay;
+    TextView curBMIDisplay;
+    TextView curFatRateDisplay;
 
     String username;
 
@@ -64,9 +72,28 @@ public class UserDisplay extends AppCompatActivity {
                 heightFeet = (String) snapshot.child("heightFeet").getValue();
                 heightInches = (String) snapshot.child("heightInches").getValue();
                 currentWeight = (String) snapshot.child("currentWeight").getValue();
+                String currentFatRate = "";
+                snapshot.child("recordWeights").getChildren();
+                for(DataSnapshot data : snapshot.child("recordWeights").getChildren()) {
+                    currentFatRate = data.child("bodyFatPercent").getValue().toString();
+                }
+
+                System.err.println("Fat Rate: " + currentFatRate);
                 Double height = Double.parseDouble(heightFeet) * 12 + Double.parseDouble(heightInches);
                 currentBMI = Double.parseDouble(currentWeight) / (height * height) * 703;
                 System.err.println("********** currentBMI "+ currentBMI);
+
+//                currentFatRate = (String) snapshot.child("recordWeights").getValue();
+//                System.err.println("********** currentFatRate "+ currentFatRate);
+
+                curWeightDisplay = findViewById(R.id.current_weight);
+                curWeightDisplay.setText(currentWeight+ "lbs");
+
+                curBMIDisplay = findViewById(R.id.current_bmi);
+                curBMIDisplay.setText(String.format("%.2f", currentBMI));
+
+                curFatRateDisplay = findViewById(R.id.current_fat_rate);
+                curFatRateDisplay.setText(currentFatRate);
             }
 
             @Override

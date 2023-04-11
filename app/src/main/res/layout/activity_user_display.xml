@@ -12,7 +12,7 @@
         android:id="@+id/currentUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="56dp"
         android:text="TextView"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -20,21 +20,6 @@
         app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/subtitle_current"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your current weight:"
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
-
 
     <TextView
         android:id="@+id/subtitle_goal"
@@ -48,39 +33,7 @@
         app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
-
-    <TextView
-        android:id="@+id/current_weight"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/circle"
-        android:gravity="center"
-        android:text="current\nweight"
-        android:textColor="@android:color/black"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
-
-    <TextView
-        android:id="@+id/current_bmi"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/circle"
-        android:gravity="center"
-        android:text="current \nbmi"
-        android:textColor="@android:color/black"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.475" />
 
     <TextView
         android:id="@+id/current_fat_rate"
@@ -88,7 +41,7 @@
         android:layout_height="100dp"
         android:background="@drawable/circle"
         android:gravity="center"
-        android:text="current \nfat rate"
+        android:text="current\n fat rate"
         android:textColor="@android:color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +49,53 @@
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
+        android:id="@+id/current_weight"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:text="current\n weight"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
+        android:id="@+id/current_bmi"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:text="current\n bmi"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
+        android:id="@+id/subtitle_current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your current weight:"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166" />
 
     <TextView
         android:id="@+id/goal_weight"
@@ -104,7 +103,7 @@
         android:layout_height="100dp"
         android:background="@drawable/circle"
         android:gravity="center"
-        android:text="goal \nweight"
+        android:text="goal\n weight"
         android:textColor="@android:color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -121,7 +120,7 @@
         android:layout_height="100dp"
         android:background="@drawable/circle"
         android:gravity="center"
-        android:text="goal\nbmi"
+        android:text="goal\n bmi"
         android:textColor="@android:color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -137,7 +136,7 @@
         android:layout_height="100dp"
         android:background="@drawable/circle"
         android:gravity="center"
-        android:text="goal \nfat rate"
+        android:text="goal\n fat rate"
         android:textColor="@android:color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
