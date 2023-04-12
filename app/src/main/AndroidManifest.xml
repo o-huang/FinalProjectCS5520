@@ -20,6 +20,9 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".UserDisplay"
+            android:exported="false" />
+        <activity
             android:name=".sharePublicActivity.SharePublic"
             android:exported="false">
             <meta-data
