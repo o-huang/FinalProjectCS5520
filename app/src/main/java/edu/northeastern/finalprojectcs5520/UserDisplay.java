@@ -9,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.icu.number.Precision;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Formatter;
+
+import edu.northeastern.finalprojectcs5520.sharePublicActivity.SharePublic;
 
 public class UserDisplay extends AppCompatActivity {
     TextView currentUserName;
@@ -43,7 +46,20 @@ public class UserDisplay extends AppCompatActivity {
     TextView curBMIDisplay;
     TextView curFatRateDisplay;
 
+    String goalWeight;
+    String goalBMI;
+    String goalFatRate;
+
+    TextView goalWeightDisplay;
+    TextView goalBMIDisplay;
+    TextView goalFatRateDisplay;
+
     String username;
+
+    private Button shareButton;
+    private Button diaryButton;
+    private Button homeButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,27 +103,82 @@ public class UserDisplay extends AppCompatActivity {
 
                 // Update the display current weight, BMI, and Fat Rate
                 curWeightDisplay = findViewById(R.id.current_weight);
-                curWeightDisplay.setText(currentWeight+ "lbs");
+                curWeightDisplay.setText(currentWeight + "lbs");
 
                 curBMIDisplay = findViewById(R.id.current_bmi);
                 if (curBMIDisplay != null) {
                 curBMIDisplay.setText(String.format("%.2f", currentBMI));}
 
                 curFatRateDisplay = findViewById(R.id.current_fat_rate);
-                curFatRateDisplay.setText(currentFatRate);
+                curFatRateDisplay.setText(currentFatRate + "%");
+
+                goalWeight = (String) snapshot.child("goalWeight").getValue();
+                goalBMI = (String) snapshot.child("goalBMI").getValue();
+                goalFatRate = (String) snapshot.child("goalFatRate").getValue();
+
+                goalWeightDisplay = findViewById(R.id.goal_weight);
+                goalWeightDisplay.setText(goalWeight + "lbs");
+
+                goalBMIDisplay = findViewById(R.id.goal_bmi);
+                goalBMIDisplay.setText(goalBMI);
+
+                goalFatRateDisplay = findViewById(R.id.goal_fat_rate);
+                goalFatRateDisplay.setText(goalFatRate + "%");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
+
+        shareButton = findViewById(R.id.share_button);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSharePublicPage();
+            }
+        });
+
+
+//        diaryButton = findViewById(R.id.diary_button);
+//        diaryButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openHistoryPage();
+//            }
+//        });
+
+        homeButton = findViewById(R.id.home_button);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUserMainPage();
+            }
+        });
 
     }
 
     public void openLoginPage() {
         Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void openSharePublicPage() {
+        Intent intent = new Intent(this, SharePublic.class);
+        startActivity(intent);
+        finish();
+    }
+
+//    public void openHistoryPage() {
+//        Intent intent = new Intent(this, History.class);
+//        startActivity(intent);
+//        finish();
+//    }
+
+    public void openUserMainPage() {
+        Intent intent = new Intent(this, UserMainActivity.class);
         startActivity(intent);
         finish();
     }
