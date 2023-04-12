@@ -85,9 +85,9 @@ public class UserDisplay extends AppCompatActivity {
         reference.child("users").child(username).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                heightFeet = (String) snapshot.child("heightFeet").getValue();
-                heightInches = (String) snapshot.child("heightInches").getValue();
-                currentWeight = (String) snapshot.child("currentWeight").getValue();
+                heightFeet = snapshot.child("heightFeet").getValue().toString();
+                heightInches = snapshot.child("heightInches").getValue().toString();
+                currentWeight = snapshot.child("currentWeight").getValue().toString();
 
                 String currentFatRate = "";
                 snapshot.child("recordWeights").getChildren();
@@ -97,7 +97,15 @@ public class UserDisplay extends AppCompatActivity {
                 System.err.println("********** currentFatRate " + currentFatRate);
 
                 Double height = Double.parseDouble(heightFeet) * 12 + Double.parseDouble(heightInches);
-                currentBMI = Double.parseDouble(currentWeight) / (height * height) * 703;
+
+                String personalInfoEntered;
+                personalInfoEntered = snapshot.child("personalInfoEntered").getValue().toString();
+                if (personalInfoEntered == "true") {
+                    currentBMI = Double.parseDouble(currentWeight) / (height * height) * 703;
+                } else {
+                    currentBMI=0.0;
+                };
+
                 System.err.println("********** currentBMI "+ currentBMI);
 
 
@@ -112,9 +120,9 @@ public class UserDisplay extends AppCompatActivity {
                 curFatRateDisplay = findViewById(R.id.current_fat_rate);
                 curFatRateDisplay.setText(currentFatRate + "%");
 
-                goalWeight = (String) snapshot.child("goalWeight").getValue();
-                goalBMI = (String) snapshot.child("goalBMI").getValue();
-                goalFatRate = (String) snapshot.child("goalFatRate").getValue();
+                goalWeight = snapshot.child("goalWeight").getValue().toString();
+                goalBMI = snapshot.child("goalBMI").getValue().toString();
+                goalFatRate = snapshot.child("goalFatRate").getValue().toString();
 
                 goalWeightDisplay = findViewById(R.id.goal_weight);
                 goalWeightDisplay.setText(goalWeight + "lbs");
