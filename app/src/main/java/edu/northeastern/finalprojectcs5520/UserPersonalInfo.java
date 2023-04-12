@@ -31,6 +31,9 @@ public class UserPersonalInfo extends AppCompatActivity {
     EditText heightFeet;
     EditText heightInches;
     EditText currentWeight;
+    EditText goalWeight;
+    EditText goalBMI;
+    EditText goalFatRate;
     Button submitButton;
 
 
@@ -44,6 +47,10 @@ public class UserPersonalInfo extends AppCompatActivity {
     String heightFeetText;
     String heightInchesText;
     String currentWeightText;
+    String goalWeightText;
+    String goalBMIText;
+    String goalFatRateText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,9 @@ public class UserPersonalInfo extends AppCompatActivity {
         heightInches = findViewById(R.id.heightInches);
         currentWeight = findViewById(R.id.currentWeight);
         submitButton = findViewById(R.id.personalInfoSubmitButton);
+        goalWeight = findViewById(R.id.goalWeight);
+        goalFatRate = findViewById(R.id.goalFateRate);
+        goalBMI = findViewById(R.id.goalBMI);
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +84,9 @@ public class UserPersonalInfo extends AppCompatActivity {
 
     public void addUserPersonalInfo() {
 
-        if (TextUtils.isEmpty(age.getText()) || TextUtils.isEmpty(heightFeet.getText()) || TextUtils.isEmpty(heightInches.getText()) || TextUtils.isEmpty(currentWeight.getText())) {
+        if (TextUtils.isEmpty(age.getText()) || TextUtils.isEmpty(heightFeet.getText()) || TextUtils.isEmpty(heightInches.getText()) || TextUtils.isEmpty(currentWeight.getText())
+         || TextUtils.isEmpty(goalWeight.getText()) || TextUtils.isEmpty(goalBMI.getText()) || TextUtils.isEmpty(goalFatRate.getText())
+        ) {
             Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -83,6 +95,9 @@ public class UserPersonalInfo extends AppCompatActivity {
         heightFeetText = String.valueOf(heightFeet.getText());
         heightInchesText = String.valueOf(heightInches.getText());
         currentWeightText = String.valueOf(currentWeight.getText());
+        goalWeightText = String.valueOf(goalWeight.getText());
+        goalFatRateText = String.valueOf(goalFatRate.getText());
+        goalBMIText = String.valueOf(goalBMI.getText());
 
         //Get current username
         currentUser = auth.getCurrentUser();
@@ -95,7 +110,7 @@ public class UserPersonalInfo extends AppCompatActivity {
                 reference.child(username).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-
+                        System.out.println("Updated User info");
                     }
                 });
 
@@ -105,14 +120,6 @@ public class UserPersonalInfo extends AppCompatActivity {
         });
 
 
-    }
-
-
-    public void openUserPage() {
-        //Directs user to user page.
-        Intent intent = new Intent(this, UserMainActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     public void openRecordWeightPage() {
@@ -131,6 +138,9 @@ public class UserPersonalInfo extends AppCompatActivity {
                 currentUser.put("age", ageText);
                 currentUser.put("heightInches", heightInchesText);
                 currentUser.put("heightFeet", heightFeetText);
+                currentUser.put("goalWeight", goalWeightText);
+                currentUser.put("goalBMI", goalBMIText);
+                currentUser.put("goalFatRate", goalFatRateText);
                 currentUser.put("personalInfoEntered", true);
                 fireStoreCallback.enterPersonalInfo(currentUser);
 

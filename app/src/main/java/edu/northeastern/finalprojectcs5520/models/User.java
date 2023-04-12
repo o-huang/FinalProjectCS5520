@@ -15,6 +15,9 @@ public class User {
     public int heightFeet;
     public int heightInches;
     public int currentWeight;
+    public int goalWeight;
+    public int goalBMI;
+    public int goalFatRate;
 
 //    public ArrayList<HashMap> receivedSticker;
 
