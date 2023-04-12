@@ -2,8 +2,10 @@ package edu.northeastern.finalprojectcs5520;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.icu.number.Precision;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -85,11 +88,20 @@ public class UserDisplay extends AppCompatActivity {
         reference.child("users").child(username).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
                 heightFeet = snapshot.child("heightFeet").getValue().toString();
                 heightInches = snapshot.child("heightInches").getValue().toString();
                 currentWeight = snapshot.child("currentWeight").getValue().toString();
 
-                String currentFatRate = "";
+
+                if (currentWeight.equals("0")) {
+                    Toast.makeText(getApplicationContext(), "Please record your weight.", Toast.LENGTH_LONG).show();
+                }
+
+
+
+                String currentFatRate = "0";
                 snapshot.child("recordWeights").getChildren();
                 for(DataSnapshot data : snapshot.child("recordWeights").getChildren()) {
                     currentFatRate = data.child("bodyFatPercent").getValue().toString();
@@ -100,7 +112,7 @@ public class UserDisplay extends AppCompatActivity {
 
                 String personalInfoEntered;
                 personalInfoEntered = snapshot.child("personalInfoEntered").getValue().toString();
-                if (personalInfoEntered == "true") {
+                if (personalInfoEntered.equals("true")) {
                     currentBMI = Double.parseDouble(currentWeight) / (height * height) * 703;
                 } else {
                     currentBMI=0.0;
@@ -128,7 +140,7 @@ public class UserDisplay extends AppCompatActivity {
                 goalWeightDisplay.setText(goalWeight + "lbs");
 
                 goalBMIDisplay = findViewById(R.id.goal_bmi);
-                goalBMIDisplay.setText(goalBMI);
+                goalBMIDisplay.setText(String.format("%.2f", Double.parseDouble(goalBMI)));
 
                 goalFatRateDisplay = findViewById(R.id.goal_fat_rate);
                 goalFatRateDisplay.setText(goalFatRate + "%");
