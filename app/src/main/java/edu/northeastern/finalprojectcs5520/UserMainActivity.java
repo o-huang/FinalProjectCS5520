@@ -79,6 +79,8 @@ public class UserMainActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         checkPersonalInfo = (Boolean) snapshot.child("personalInfoEntered").getValue();
+                        System.out.println("hiiiii");
+                        System.out.println(checkPersonalInfo);
                         if (checkPersonalInfo) {
                             openRecordWeightPage();
                         } else {
