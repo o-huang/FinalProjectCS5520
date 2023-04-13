@@ -102,9 +102,11 @@ public class UserDisplay extends AppCompatActivity {
 
 
                 String currentFatRate = "0";
+                String tempWeight = "0";
                 snapshot.child("recordWeights").getChildren();
                 for(DataSnapshot data : snapshot.child("recordWeights").getChildren()) {
                     currentFatRate = data.child("bodyFatPercent").getValue().toString();
+                    tempWeight = data.child("recordWeight").getValue().toString();
                 }
                 System.err.println("********** currentFatRate " + currentFatRate);
 
@@ -123,7 +125,7 @@ public class UserDisplay extends AppCompatActivity {
 
                 // Update the display current weight, BMI, and Fat Rate
                 curWeightDisplay = findViewById(R.id.current_weight);
-                curWeightDisplay.setText(currentWeight + "lbs");
+                curWeightDisplay.setText(tempWeight + "lbs");
 
                 curBMIDisplay = findViewById(R.id.current_bmi);
                 if (curBMIDisplay != null) {

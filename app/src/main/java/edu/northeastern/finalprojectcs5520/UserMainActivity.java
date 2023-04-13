@@ -30,7 +30,7 @@ public class UserMainActivity extends AppCompatActivity {
     private Button recordWeight;
     private Button sharePublic;
     private Button userDisplay;
-
+    private Button achievement;
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
     Boolean checkPersonalInfo;
@@ -115,6 +115,14 @@ public class UserMainActivity extends AppCompatActivity {
             }
         });
 
+        achievement = findViewById(R.id.achievements);
+        achievement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAchievementPage();
+            }
+        });
+
 
     }
 
@@ -151,6 +159,12 @@ public class UserMainActivity extends AppCompatActivity {
 
     public void openUserDisplayPage() {
         Intent intent = new Intent(this, UserDisplay.class);
+        startActivity(intent);
+
+    }
+
+    public void openAchievementPage() {
+        Intent intent = new Intent(this, Achievement.class);
         startActivity(intent);
 
     }
