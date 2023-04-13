@@ -17,6 +17,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import edu.northeastern.finalprojectcs5520.authenticationActivities.Login;
+import edu.northeastern.finalprojectcs5520.userPersonalInfoActivities.EditUserPersonalInfo;
+import edu.northeastern.finalprojectcs5520.userPersonalInfoActivities.UserPersonalInfo;
 import edu.northeastern.finalprojectcs5520.sharePublicActivity.SharePublic;
 
 public class UserMainActivity extends AppCompatActivity {
@@ -30,6 +33,7 @@ public class UserMainActivity extends AppCompatActivity {
     private Button recordWeight;
     private Button sharePublic;
     private Button userDisplay;
+    private Button editUserInfo;
 
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
@@ -115,6 +119,13 @@ public class UserMainActivity extends AppCompatActivity {
             }
         });
 
+        editUserInfo = findViewById(R.id.editUserInfo);
+        editUserInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUserInfoPage();
+            }
+        });
 
     }
 
@@ -153,5 +164,10 @@ public class UserMainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, UserDisplay.class);
         startActivity(intent);
 
+    }
+
+    public void openUserInfoPage(){
+        Intent intent = new Intent(this, EditUserPersonalInfo.class);
+        startActivity(intent);
     }
 }

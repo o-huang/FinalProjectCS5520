@@ -4,24 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp"
-    tools:context=".userPersonalInfoActivities.UserPersonalInfo">
+    tools:context=".userPersonalInfoActivities.EditUserPersonalInfo">
+
 
     <TextView
-        android:id="@+id/userPersonalInfoTitle"
+        android:id="@+id/editUserPersonalInfoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tell Me About Yourself"
+        android:text="Edit Your Information"
         android:textColor="#559CD5"
         android:textSize="30dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editAge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/age"
+        android:id="@+id/editAge"
         android:layout_width="331dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_person_pin_24"
@@ -29,14 +30,15 @@
         android:ems="10"
         android:hint="Age"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/heightFeet"
+
+        app:layout_constraintBottom_toTopOf="@+id/editHeightFeet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPersonalInfoTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/editUserPersonalInfoTitle" />
 
     <EditText
-        android:id="@+id/heightFeet"
+        android:id="@+id/editHeightFeet"
         android:layout_width="331dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_height_24"
@@ -44,14 +46,14 @@
         android:ems="10"
         android:hint="Height feet"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/heightInches"
+        app:layout_constraintBottom_toTopOf="@+id/editHeightInches"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age" />
+        app:layout_constraintTop_toBottomOf="@+id/editAge" />
 
     <EditText
-        android:id="@+id/heightInches"
+        android:id="@+id/editHeightInches"
         android:layout_width="331dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_height_24"
@@ -60,15 +62,15 @@
         android:hint="Height Inches"
         android:inputType="numberDecimal"
 
-        app:layout_constraintBottom_toTopOf="@+id/currentWeight"
+        app:layout_constraintBottom_toTopOf="@+id/editCurrentWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heightFeet" />
+        app:layout_constraintTop_toBottomOf="@+id/editHeightFeet" />
 
 
     <EditText
-        android:id="@+id/currentWeight"
+        android:id="@+id/editCurrentWeight"
         android:layout_width="331dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_monitor_weight_24"
@@ -77,14 +79,14 @@
         android:ems="10"
         android:hint="Current Weight"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/goalWeight"
+        app:layout_constraintBottom_toTopOf="@+id/editGoalWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heightInches" />
+        app:layout_constraintTop_toBottomOf="@+id/editHeightInches" />
 
     <EditText
-        android:id="@+id/goalWeight"
+        android:id="@+id/editGoalWeight"
         android:layout_width="331dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_fact_check_24"
@@ -93,14 +95,14 @@
         android:ems="10"
         android:hint="Goal weight"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/goalBMI"
+        app:layout_constraintBottom_toTopOf="@+id/editGoalBMI"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/editCurrentWeight" />
 
     <EditText
-        android:id="@+id/goalBMI"
+        android:id="@+id/editGoalBMI"
         android:layout_width="331dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_fact_check_24"
@@ -109,14 +111,14 @@
         android:ems="10"
         android:hint="Goal BMI"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/goalFateRate"
+        app:layout_constraintBottom_toTopOf="@+id/editGoalFateRate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/editGoalWeight" />
 
     <EditText
-        android:id="@+id/goalFateRate"
+        android:id="@+id/editGoalFateRate"
         android:layout_width="331dp"
         android:layout_height="60dp"
         android:drawableStart="@drawable/ic_baseline_fact_check_24"
@@ -125,23 +127,22 @@
         android:ems="10"
         android:hint="Goal Fat Rate %"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/personalInfoSubmitButton"
+        app:layout_constraintBottom_toTopOf="@+id/editPersonalInfoSubmitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalBMI" />
+        app:layout_constraintTop_toBottomOf="@+id/editGoalBMI" />
 
     <Button
-        android:id="@+id/personalInfoSubmitButton"
+        android:id="@+id/editPersonalInfoSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#559CD5"
-        android:text="Submit"
+        android:text="Submit Changes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalFateRate" />
-
+        app:layout_constraintTop_toBottomOf="@+id/editGoalFateRate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

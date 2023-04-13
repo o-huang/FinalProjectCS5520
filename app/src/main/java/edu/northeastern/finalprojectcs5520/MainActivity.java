@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import edu.northeastern.finalprojectcs5520.authenticationActivities.Login;
+import edu.northeastern.finalprojectcs5520.authenticationActivities.Register;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button loginButton;

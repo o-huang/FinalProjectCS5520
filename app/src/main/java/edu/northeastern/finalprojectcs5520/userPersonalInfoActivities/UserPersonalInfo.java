@@ -1,4 +1,4 @@
-package edu.northeastern.finalprojectcs5520;
+package edu.northeastern.finalprojectcs5520.userPersonalInfoActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Map;
 
-import edu.northeastern.finalprojectcs5520.models.User;
+import edu.northeastern.finalprojectcs5520.R;
+import edu.northeastern.finalprojectcs5520.RecordWeight;
 
 public class UserPersonalInfo extends AppCompatActivity {
 
@@ -71,6 +73,11 @@ public class UserPersonalInfo extends AppCompatActivity {
         goalFatRate = findViewById(R.id.goalFateRate);
         goalBMI = findViewById(R.id.goalBMI);
 
+        //Get current username
+        currentUser = auth.getCurrentUser();
+        String email = currentUser.getEmail();
+        username = email.split("@")[0];
+
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +92,7 @@ public class UserPersonalInfo extends AppCompatActivity {
     public void addUserPersonalInfo() {
 
         if (TextUtils.isEmpty(age.getText()) || TextUtils.isEmpty(heightFeet.getText()) || TextUtils.isEmpty(heightInches.getText()) || TextUtils.isEmpty(currentWeight.getText())
-         || TextUtils.isEmpty(goalWeight.getText()) || TextUtils.isEmpty(goalBMI.getText()) || TextUtils.isEmpty(goalFatRate.getText())
+                || TextUtils.isEmpty(goalWeight.getText()) || TextUtils.isEmpty(goalBMI.getText()) || TextUtils.isEmpty(goalFatRate.getText())
         ) {
             Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
             return;
@@ -99,63 +106,25 @@ public class UserPersonalInfo extends AppCompatActivity {
         goalFatRateText = String.valueOf(goalFatRate.getText());
         goalBMIText = String.valueOf(goalBMI.getText());
 
-        //Get current username
-        currentUser = auth.getCurrentUser();
-        String email = currentUser.getEmail();
-        username = email.split("@")[0];
 
-        getUserInfo(new FireStoreCallback() {
+        Map<String, Object> userInfoUpdates = new HashMap<>();
+
+        userInfoUpdates.put("currentWeight", currentWeightText);
+        userInfoUpdates.put("age", ageText);
+        userInfoUpdates.put("heightInches", heightInchesText);
+        userInfoUpdates.put("heightFeet", heightFeetText);
+        userInfoUpdates.put("goalWeight", goalWeightText);
+        userInfoUpdates.put("goalBMI", goalBMIText);
+        userInfoUpdates.put("goalFatRate", goalFatRateText);
+        userInfoUpdates.put("personalInfoEntered", true);
+
+        reference.child(username).updateChildren(userInfoUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void enterPersonalInfo(HashMap userInfo) {
-                reference.child(username).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        System.out.println("Updated User info");
-                    }
-                });
-
-
-                openRecordWeightPage();
-            }
-        });
-
-
-    }
-
-    public void openRecordWeightPage() {
-        Intent intent = new Intent(this, RecordWeight.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void getUserInfo(FireStoreCallback fireStoreCallback) {
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                HashMap currentUser = (HashMap) snapshot.child(username).getValue();
-
-                currentUser.put("currentWeight", currentWeightText);
-                currentUser.put("age", ageText);
-                currentUser.put("heightInches", heightInchesText);
-                currentUser.put("heightFeet", heightFeetText);
-                currentUser.put("goalWeight", goalWeightText);
-                currentUser.put("goalBMI", goalBMIText);
-                currentUser.put("goalFatRate", goalFatRateText);
-                currentUser.put("personalInfoEntered", true);
-                fireStoreCallback.enterPersonalInfo(currentUser);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println("There was error");
+            public void onComplete(@NonNull Task<Void> task) {
+                System.out.println("Finished inputting new user information");
             }
         });
 
     }
 
-
-    private interface FireStoreCallback {
-        void enterPersonalInfo(HashMap userInfo);
-    }
 }
