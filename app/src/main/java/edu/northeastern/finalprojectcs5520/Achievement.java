@@ -75,7 +75,7 @@ public class Achievement extends AppCompatActivity {
 
                 ArrayList<Integer> achieved = new ArrayList<>();
                 for (int i = 0; i < milestones.length; i++) {
-                    if (records.size() >= milestones[i]) {
+                    if (records.size() >= milestones[i]-500) {
                         achieved.add(milestones[i]);
                     }
                 }
@@ -103,17 +103,20 @@ public class Achievement extends AppCompatActivity {
                     }
                     int milestone = achieved.get(i);
                     ImageView badge = new ImageView(getApplicationContext());
-                    badge.setImageResource(R.drawable.badge);
+                    badge.setImageResource(R.drawable.medal_pic_small);
+
+
                     badge.setLayoutParams(new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));
                     badge.setContentDescription(milestone + " records");
 
+
                     TextView badgeText = new TextView(getApplicationContext());
                     badgeText.setText(String.valueOf(milestone));
-                    badgeText.setTextColor(Color.WHITE);
-                    badgeText.setGravity(Gravity.CENTER);
-                    badgeText.setTextSize(20);
+                    badgeText.setTextColor(Color.BLUE);
+                    badgeText.setPadding(0,0,0,50);
+                    badgeText.setTextSize(17);
 
                     RelativeLayout badgeContainer = new RelativeLayout(getApplicationContext());
                     badgeContainer.setLayoutParams(new LinearLayout.LayoutParams(
@@ -121,7 +124,7 @@ public class Achievement extends AppCompatActivity {
                             LinearLayout.LayoutParams.WRAP_CONTENT));
                     badgeContainer.addView(badge);
                     badgeContainer.addView(badgeText);
-                    badgeContainer.setPadding(20,15,20,15);
+                    badgeContainer.setPadding(40,15,40,15);
 
                     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) badgeText.getLayoutParams();
                     params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
