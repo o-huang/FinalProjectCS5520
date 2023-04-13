@@ -121,7 +121,7 @@ public class HistoryActivity extends AppCompatActivity {
         @NonNull
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.record_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_item, parent, false);
             return new MyViewHolder(view);
         }
 
@@ -146,9 +146,9 @@ public class HistoryActivity extends AppCompatActivity {
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                recordWeightTextView = itemView.findViewById(R.id.recordWeight);
-                bodyFatTextView = itemView.findViewById(R.id.bodyFat);
-                dateTextView = itemView.findViewById(R.id.date);
+                recordWeightTextView = itemView.findViewById(R.id.weightTextView);
+                bodyFatTextView = itemView.findViewById(R.id.bodyFatTextView);
+                dateTextView = itemView.findViewById(R.id.dateTextView);
             }
         }
     }
