@@ -75,7 +75,7 @@ public class Achievement extends AppCompatActivity {
 
                 ArrayList<Integer> achieved = new ArrayList<>();
                 for (int i = 0; i < milestones.length; i++) {
-                    if (records.size() >= milestones[i]-500) {
+                    if (records.size() >= milestones[i]) {
                         achieved.add(milestones[i]);
                     }
                 }
