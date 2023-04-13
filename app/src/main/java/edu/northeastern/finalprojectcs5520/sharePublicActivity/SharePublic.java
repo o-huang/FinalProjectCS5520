@@ -43,20 +43,20 @@ public class SharePublic extends AppCompatActivity {
                     String username = dataSnapshot.child("username").getValue().toString();
 
                     HashMap myList = (HashMap) dataSnapshot.child("recordWeights").getValue();
-                    if(myList!= null){
+                    if (myList != null) {
                         myList.forEach((key, value) -> {
                             if ((Boolean) ((HashMap) value).get("public")) {
 
                                 String date = key.toString();
 
                                 String[] dateList = date.split("_");
-                                System.out.println(dateList);
-                                String dateCorrectFormat = dateList[0] +"/"+dateList[1]+"/"+dateList[2] ;
+
+                                String dateCorrectFormat = dateList[0] + "/" + dateList[1] + "/" + dateList[2];
 
                                 String bodyWeight = "Weight: " + (String) ((HashMap) value).get("recordWeight");
                                 String bodyFat = "Body Fat: " + (String) ((HashMap) value).get("bodyFatPercent");
                                 String bodyBmi = "Body Bmi: " + (String) ((HashMap) value).get("bmi");
-                                sharePublicUserInfoList.add(new SharePublicInfo(username, dateCorrectFormat, bodyWeight, bodyFat,bodyBmi));
+                                sharePublicUserInfoList.add(new SharePublicInfo(username, dateCorrectFormat, bodyWeight, bodyFat, bodyBmi));
                             }
                         });
                     }

@@ -79,13 +79,11 @@ public class UserMainActivity extends AppCompatActivity {
 
                 DatabaseReference userReference = reference.child(username);
 
-
                 userReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         checkPersonalInfo = (Boolean) snapshot.child("personalInfoEntered").getValue();
-                        System.out.println("hiiiii");
-                        System.out.println(checkPersonalInfo);
+
                         if (checkPersonalInfo) {
                             openRecordWeightPage();
                         } else {
@@ -98,8 +96,6 @@ public class UserMainActivity extends AppCompatActivity {
 
                     }
                 });
-
-
             }
         });
 
@@ -144,29 +140,25 @@ public class UserMainActivity extends AppCompatActivity {
     public void openRecordUserPersonalInfoPage() {
         Intent intent = new Intent(this, UserPersonalInfo.class);
         startActivity(intent);
-
     }
 
     public void openRecordWeightPage() {
         Intent intent = new Intent(this, RecordWeight.class);
         startActivity(intent);
-
     }
 
     public void openSharePublicPage() {
         Intent intent = new Intent(this, SharePublic.class);
         startActivity(intent);
-
     }
 
 
     public void openUserDisplayPage() {
         Intent intent = new Intent(this, UserDisplay.class);
         startActivity(intent);
-
     }
 
-    public void openUserInfoPage(){
+    public void openUserInfoPage() {
         Intent intent = new Intent(this, EditUserPersonalInfo.class);
         startActivity(intent);
     }

@@ -41,8 +41,8 @@ public class RecordWeight extends AppCompatActivity {
 
     String username;
     String bodyWeightValue;
-    String bodyFatValue ;
-    boolean sharePublicValue ;
+    String bodyFatValue;
+    boolean sharePublicValue;
     Map info;
 
     @Override
@@ -87,25 +87,36 @@ public class RecordWeight extends AppCompatActivity {
         sharePublicValue = sharePublic.isChecked();
 
 
-
         //Initialize new hashmap with info from our fields
         info = new HashMap<>();
         info.put("recordWeight", bodyWeightValue);
         info.put("bodyFatPercent", bodyFatValue);
         info.put("public", sharePublicValue);
 
+        //Updates the current user weight in database
+        Map<String, Object> userWeightAndFatRateUpdate = new HashMap<>();
+
+        userWeightAndFatRateUpdate.put("currentWeight", bodyWeightValue);
+
+        reference.child(username).updateChildren(userWeightAndFatRateUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                System.out.println("Finished updating user weight and bmi.");
+            }
+        });
+
+
         //Get current username
         currentUser = auth.getCurrentUser();
         String email = currentUser.getEmail();
         username = email.split("@")[0];
 
-
+        //Callback function where it get the info to calculate the bmi
         calculateBmiCallBack(new FireStoreCallback() {
             @Override
             public void calculateBmi(String bmi) {
-
-                System.out.println(bmi);
-                info.put("bmi",bmi);
+                //add bmi
+                info.put("bmi", bmi);
 
                 reference.child(username).child("recordWeights").child(formattedDate).setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -131,9 +142,8 @@ public class RecordWeight extends AppCompatActivity {
         finish();
     }
 
-    private void calculateBmiCallBack(FireStoreCallback fireStoreCallback){
-
-
+    private void calculateBmiCallBack(FireStoreCallback fireStoreCallback) {
+        //Get height inches and feet from database and calculates bmi
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -141,11 +151,11 @@ public class RecordWeight extends AppCompatActivity {
                 String heightInches = (String) snapshot.child(username).child("heightInches").getValue();
                 String heightFeet = (String) snapshot.child(username).child("heightFeet").getValue();
 
-                float totalHeight = Float.parseFloat(heightInches) + (Float.parseFloat(heightFeet)  * 12);
+                float totalHeight = Float.parseFloat(heightInches) + (Float.parseFloat(heightFeet) * 12);
 
                 float bmi = (Float.parseFloat(bodyWeightValue) / totalHeight / totalHeight) * 703;
 
-                String roundedBmi = String.format("%.2f",bmi);
+                String roundedBmi = String.format("%.2f", bmi);
                 fireStoreCallback.calculateBmi(roundedBmi);
 
 
@@ -158,7 +168,7 @@ public class RecordWeight extends AppCompatActivity {
         });
     }
 
-    private interface FireStoreCallback{
+    private interface FireStoreCallback {
         void calculateBmi(String bmi);
     }
 }

@@ -62,12 +62,12 @@ public class EditUserPersonalInfo extends AppCompatActivity {
         goalBMI = findViewById(R.id.editGoalBMI);
 
 
-        age.setText("hiii");
         //Get current username
         currentUser = auth.getCurrentUser();
         String email = currentUser.getEmail();
         username = email.split("@")[0];
 
+        //get back user info and set it to the text view.
         getUserInfo(new FireStoreCallback() {
             @Override
             public void getUserInfoCallback(HashMap userInfo) {
@@ -79,7 +79,7 @@ public class EditUserPersonalInfo extends AppCompatActivity {
                 goalFatRate.setText((CharSequence) userInfo.get("goalFatRate"));
                 goalBMI.setText((CharSequence) userInfo.get("goalBMI"));
 
-
+                //submit changes and save change to database
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -97,7 +97,6 @@ public class EditUserPersonalInfo extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 HashMap currentUser = (HashMap) snapshot.child(username).getValue();
-
                 fireStoreCallback.getUserInfoCallback(currentUser);
 
             }
@@ -109,6 +108,7 @@ public class EditUserPersonalInfo extends AppCompatActivity {
         });
 
     }
+
 
     private void saveEditUserInfo() {
         String editAgeText = String.valueOf(age.getText());
