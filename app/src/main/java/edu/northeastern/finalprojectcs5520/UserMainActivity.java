@@ -35,6 +35,7 @@ public class UserMainActivity extends AppCompatActivity {
     private Button userDisplay;
     private Button editUserInfo;
 
+    private Button achievement;
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
     Boolean checkPersonalInfo;
@@ -115,6 +116,7 @@ public class UserMainActivity extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
         editUserInfo = findViewById(R.id.editUserInfo);
         editUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +124,16 @@ public class UserMainActivity extends AppCompatActivity {
                 openUserInfoPage();
             }
         });
+=======
+        achievement = findViewById(R.id.achievements);
+        achievement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAchievementPage();
+            }
+        });
+
+>>>>>>> afff31f (init achievement page)
 
     }
 
@@ -161,5 +173,11 @@ public class UserMainActivity extends AppCompatActivity {
     public void openUserInfoPage() {
         Intent intent = new Intent(this, EditUserPersonalInfo.class);
         startActivity(intent);
+    }
+
+    public void openAchievementPage() {
+        Intent intent = new Intent(this, Achievement.class);
+        startActivity(intent);
+
     }
 }
