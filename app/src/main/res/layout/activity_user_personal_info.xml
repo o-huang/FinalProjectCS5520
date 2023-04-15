@@ -2,141 +2,210 @@
 
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="40dp"
         tools:context=".userPersonalInfoActivities.UserPersonalInfo">
 
+
         <TextView
-            android:id="@+id/userPersonalInfoTitle"
+            android:id="@+id/editUserPersonalInfoTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tell Me About Yourself"
+            android:text="Tell Me More About You"
             android:textColor="#559CD5"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/age"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/age"
             android:layout_width="331dp"
-            android:layout_height="60dp"
-            android:drawableStart="@drawable/ic_baseline_person_pin_24"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Age"
-            android:inputType="numberDecimal"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="#ff0000"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/heightFeet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userPersonalInfoTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/editUserPersonalInfoTitle"
+            app:startIconDrawable="@drawable/ic_baseline_person_pin_24">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Age"
+                android:inputType="numberDecimal">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/heightFeet"
             android:layout_width="331dp"
-            android:layout_height="60dp"
-            android:drawableStart="@drawable/ic_baseline_height_24"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Height feet"
-            android:inputType="numberDecimal"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="#ff0000"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="true"
+
             app:layout_constraintBottom_toTopOf="@+id/heightInches"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/age" />
+            app:layout_constraintTop_toBottomOf="@+id/age"
+            app:startIconDrawable="@drawable/ic_baseline_height_24">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Height(Feet)"
+                android:inputType="numberDecimal">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/heightInches"
             android:layout_width="331dp"
-            android:layout_height="60dp"
-            android:drawableStart="@drawable/ic_baseline_height_24"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Height Inches"
-            android:inputType="numberDecimal"
-
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="#ff0000"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/currentWeight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/heightFeet" />
+            app:layout_constraintTop_toBottomOf="@+id/heightFeet"
+            app:startIconDrawable="@drawable/ic_baseline_height_24">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Height(Inches)"
+                android:inputType="numberDecimal">
 
-        <EditText
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/currentWeight"
             android:layout_width="331dp"
-            android:layout_height="60dp"
-            android:drawableStart="@drawable/ic_baseline_monitor_weight_24"
-            android:drawablePadding="10dp"
-            android:drawableTint="#559CD5"
-            android:ems="10"
-            android:hint="Current Weight"
-            android:inputType="numberDecimal"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="#ff0000"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/goalWeight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/heightInches" />
+            app:layout_constraintTop_toBottomOf="@+id/heightInches"
+            app:startIconDrawable="@drawable/ic_baseline_monitor_weight_24">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Current Weight"
+                android:inputType="numberDecimal">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/goalWeight"
             android:layout_width="331dp"
-            android:layout_height="60dp"
-            android:drawableStart="@drawable/ic_baseline_fact_check_24"
-            android:drawablePadding="10dp"
-            android:drawableTint="#559CD5"
-            android:ems="10"
-            android:hint="Goal weight"
-            android:inputType="numberDecimal"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="#ff0000"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/goalBMI"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currentWeight" />
+            app:layout_constraintTop_toBottomOf="@+id/currentWeight"
+            app:startIconDrawable="@drawable/ic_baseline_fact_check_24">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Goal Weight"
+                android:inputType="numberDecimal">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/goalBMI"
             android:layout_width="331dp"
-            android:layout_height="60dp"
-            android:drawableStart="@drawable/ic_baseline_fact_check_24"
-            android:drawablePadding="10dp"
-            android:drawableTint="#559CD5"
-            android:ems="10"
-            android:hint="Goal BMI"
-            android:inputType="numberDecimal"
-            app:layout_constraintBottom_toTopOf="@+id/goalFateRate"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="#ff0000"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toTopOf="@+id/goalFatRate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goalWeight" />
+            app:layout_constraintTop_toBottomOf="@+id/goalWeight"
+            app:startIconDrawable="@drawable/ic_baseline_fact_check_24">
 
-        <EditText
-            android:id="@+id/goalFateRate"
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Goal BMI"
+                android:inputType="numberDecimal">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/goalFatRate"
             android:layout_width="331dp"
-            android:layout_height="60dp"
-            android:drawableStart="@drawable/ic_baseline_fact_check_24"
-            android:drawablePadding="10dp"
-            android:drawableTint="#559CD5"
-            android:ems="10"
-            android:hint="Goal Fat Rate %"
-            android:inputType="numberDecimal"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="#ff0000"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/personalInfoSubmitButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goalBMI" />
+            app:layout_constraintTop_toBottomOf="@+id/goalBMI"
+            app:startIconDrawable="@drawable/ic_baseline_fact_check_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Goal Fate Rate %"
+                android:inputType="numberDecimal">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/personalInfoSubmitButton"
@@ -148,7 +217,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goalFateRate" />
+            app:layout_constraintTop_toBottomOf="@+id/goalFatRate" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

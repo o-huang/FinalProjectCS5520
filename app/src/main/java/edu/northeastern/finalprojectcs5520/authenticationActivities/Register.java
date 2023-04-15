@@ -37,16 +37,16 @@ public class Register extends AppCompatActivity {
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if (currentUser != null) {
-            openUserPage();
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//
+//        if (currentUser != null) {
+//            openUserPage();
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

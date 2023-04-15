@@ -1,52 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="40dp"
         tools:context=".RecordWeight">
 
-        <EditText
-            android:id="@+id/bodyWeight"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:drawableStart="@drawable/ic_baseline_monitor_weight_24"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Body Weight"
-            android:inputType="numberDecimal"
-            app:layout_constraintBottom_toTopOf="@+id/bodyFat"
+        <TextView
+            android:id="@+id/editUserPersonalInfoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Record Your Weight"
+            android:textColor="#559CD5"
+            android:textSize="25dp"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toTopOf="@+id/bodyWeight"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bodyWeight"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="#ff0000"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toTopOf="@+id/bodyFat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editUserPersonalInfoTitle"
+            app:startIconDrawable="@drawable/ic_baseline_monitor_weight_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Body Weight"
+                android:inputType="numberDecimal">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/bodyFat"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:drawableStart="@drawable/ic_baseline_percent_24"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Body Fat %"
-            android:inputType="numberDecimal"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="#ff0000"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/sharePublic"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bodyWeight" />
+            app:layout_constraintTop_toBottomOf="@+id/bodyWeight"
+            app:startIconDrawable="@drawable/ic_baseline_monitor_weight_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Body Fat %"
+                android:inputType="numberDecimal">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:id="@+id/sharePublic"
-            android:layout_width="0dp"
+            android:layout_width="331dp"
             android:layout_height="wrap_content"
             android:text="Share Public"
             app:layout_constraintBottom_toTopOf="@+id/submitButton"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bodyFat" />
 
@@ -57,6 +98,7 @@
             android:text="Submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sharePublic" />
 

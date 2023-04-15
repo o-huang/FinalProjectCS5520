@@ -35,16 +35,16 @@ public class Login extends AppCompatActivity {
     DatabaseReference reference;
     Boolean checkPersonalInfo;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if (currentUser != null) {
-            openUserPage();
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//
+//        if (currentUser != null) {
+//            openUserPage();
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

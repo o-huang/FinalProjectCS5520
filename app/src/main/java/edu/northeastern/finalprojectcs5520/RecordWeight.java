@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,8 +31,8 @@ import java.util.Map;
 
 public class RecordWeight extends AppCompatActivity {
 
-    EditText bodyWeight;
-    EditText bodyFat;
+    TextInputLayout bodyWeight;
+    TextInputLayout bodyFat;
     CheckBox sharePublic;
     Button submitButton;
 
@@ -78,29 +79,15 @@ public class RecordWeight extends AppCompatActivity {
         Date date = new Date();
         String formattedDate = formatter.format(date);
 
-        //Check that body weight and body fat fields are not empty
-        if (TextUtils.isEmpty(bodyWeight.getText()) || TextUtils.isEmpty(bodyFat.getText())) {
-            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Check that body weight is between 0 and 1000
-        if(Float.parseFloat(String.valueOf(bodyWeight.getText()))< 0 || Float.parseFloat(String.valueOf(bodyWeight.getText())) > 1000 ){
-            Toast.makeText(this, "Please enter a weight between 0 and 1000.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        //Check that body weight is between 0 and 100
-        if(Float.parseFloat(String.valueOf(bodyFat.getText())) < 0 || Float.parseFloat(String.valueOf(bodyFat.getText())) > 100 ){
-            Toast.makeText(this, "Please enter a fat % between 0 and 100.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
 
         //Get inputs from the fields
-        bodyWeightValue = String.valueOf(bodyWeight.getText());
-        bodyFatValue = String.valueOf(bodyFat.getText());
+        bodyWeightValue = String.valueOf(bodyWeight.getEditText().getText());
+        bodyFatValue = String.valueOf(bodyFat.getEditText().getText());
         sharePublicValue = sharePublic.isChecked();
 
+        if (!validateWeight() | !validateBodyFat() ) {
+            return;
+        }
 
         //Initialize new hashmap with info from our fields
         info = new HashMap<>();
@@ -188,6 +175,32 @@ public class RecordWeight extends AppCompatActivity {
 
     private interface FireStoreCallback {
         void calculateBmi(String bmi);
+    }
+
+    private boolean validateWeight() {
+        if (bodyWeightValue.isEmpty()) {
+            bodyWeight.setError("Field can't be empty");
+            return false;
+        } else if (Float.parseFloat(bodyWeightValue) < 0 || Float.parseFloat(bodyWeightValue) > 1000) {
+            bodyWeight.setError("Please enter a weight 0 and 1000.");
+            return false;
+        } else {
+            bodyWeight.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateBodyFat() {
+        if (bodyFatValue.isEmpty()) {
+            bodyFat.setError("Field can't be empty");
+            return false;
+        } else if (Float.parseFloat(bodyFatValue) < 0 || Float.parseFloat(bodyFatValue) > 100) {
+            bodyFat.setError("Please enter body fat % between 0 and 100.");
+            return false;
+        } else {
+            bodyFat.setError(null);
+            return true;
+        }
     }
 }
 

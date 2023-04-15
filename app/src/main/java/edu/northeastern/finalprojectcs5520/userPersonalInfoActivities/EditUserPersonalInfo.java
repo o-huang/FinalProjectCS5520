@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,13 +30,13 @@ import edu.northeastern.finalprojectcs5520.R;
 
 public class EditUserPersonalInfo extends AppCompatActivity {
 
-    EditText age;
-    EditText heightFeet;
-    EditText heightInches;
-    EditText currentWeight;
-    EditText goalWeight;
-    EditText goalBMI;
-    EditText goalFatRate;
+    TextInputLayout age;
+    TextInputLayout heightFeet;
+    TextInputLayout heightInches;
+    TextInputLayout currentWeight;
+    TextInputLayout goalWeight;
+    TextInputLayout goalBMI;
+    TextInputLayout goalFatRate;
     Button submitButton;
 
     FirebaseAuth auth;
@@ -44,6 +46,14 @@ public class EditUserPersonalInfo extends AppCompatActivity {
 
 
     String username;
+
+    String editAgeText;
+    String editHeightFeetText;
+    String editHeightInchesText;
+    String editCurrentWeightText;
+    String editGoalWeightText;
+    String editGoalFatRateText;
+    String editGoalBMIText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +71,7 @@ public class EditUserPersonalInfo extends AppCompatActivity {
         currentWeight = findViewById(R.id.editCurrentWeight);
         submitButton = findViewById(R.id.editPersonalInfoSubmitButton);
         goalWeight = findViewById(R.id.editGoalWeight);
-        goalFatRate = findViewById(R.id.editGoalFateRate);
+        goalFatRate = findViewById(R.id.editGoalFatRate);
         goalBMI = findViewById(R.id.editGoalBMI);
 
 
@@ -74,13 +84,13 @@ public class EditUserPersonalInfo extends AppCompatActivity {
         getUserInfo(new FireStoreCallback() {
             @Override
             public void getUserInfoCallback(HashMap userInfo) {
-                age.setText((CharSequence) userInfo.get("age"));
-                heightFeet.setText((CharSequence) userInfo.get("heightFeet"));
-                heightInches.setText((CharSequence) userInfo.get("heightInches"));
-                currentWeight.setText((CharSequence) userInfo.get("currentWeight"));
-                goalWeight.setText((CharSequence) userInfo.get("goalWeight"));
-                goalFatRate.setText((CharSequence) userInfo.get("goalFatRate"));
-                goalBMI.setText((CharSequence) userInfo.get("goalBMI"));
+                age.getEditText().setText((CharSequence) userInfo.get("age"));
+                heightFeet.getEditText().setText((CharSequence) userInfo.get("heightFeet"));
+                heightInches.getEditText().setText((CharSequence) userInfo.get("heightInches"));
+                currentWeight.getEditText().setText((CharSequence) userInfo.get("currentWeight"));
+                goalWeight.getEditText().setText((CharSequence) userInfo.get("goalWeight"));
+                goalFatRate.getEditText().setText((CharSequence) userInfo.get("goalFatRate"));
+                goalBMI.getEditText().setText((CharSequence) userInfo.get("goalBMI"));
 
                 //submit changes and save change to database
                 submitButton.setOnClickListener(new View.OnClickListener() {
@@ -114,67 +124,19 @@ public class EditUserPersonalInfo extends AppCompatActivity {
 
 
     private void saveEditUserInfo() {
-        String editAgeText = String.valueOf(age.getText());
-        String editHeightFeetText = String.valueOf(heightFeet.getText());
-        String editHeightInchesText = String.valueOf(heightInches.getText());
-        String editCurrentWeightText = String.valueOf(currentWeight.getText());
-        String editGoalWeightText = String.valueOf(goalWeight.getText());
-        String editGoalFatRateText = String.valueOf(goalFatRate.getText());
-        String editGoalBMIText = String.valueOf(goalBMI.getText());
+        editAgeText = String.valueOf(age.getEditText().getText());
+        editHeightFeetText = String.valueOf(heightFeet.getEditText().getText());
+        editHeightInchesText = String.valueOf(heightInches.getEditText().getText());
+        editCurrentWeightText = String.valueOf(currentWeight.getEditText().getText());
+        editGoalWeightText = String.valueOf(goalWeight.getEditText().getText());
+        editGoalFatRateText = String.valueOf(goalFatRate.getEditText().getText());
+        editGoalBMIText = String.valueOf(goalBMI.getEditText().getText());
 
 
-        //Checks that the fields are filled out
-        if (TextUtils.isEmpty(age.getText()) || TextUtils.isEmpty(heightFeet.getText()) || TextUtils.isEmpty(heightInches.getText()) || TextUtils.isEmpty(currentWeight.getText())
-                || TextUtils.isEmpty(goalWeight.getText()) || TextUtils.isEmpty(goalBMI.getText()) || TextUtils.isEmpty(goalFatRate.getText())
-        ) {
-            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+        if (!validateAge() | !validateHeightFeet() | !validateHeightInches() | !validateCurrentWeight() | !validateGoalWeight() |
+                !validateGoalBMI() | !validateGoalFatRate()) {
             return;
         }
-
-//Check that age is between 0 and 200
-        if(Float.parseFloat(String.valueOf(age.getText()))< 0 || Float.parseFloat(String.valueOf(age.getText())) > 200){
-            Toast.makeText(this, "Please enter a age between 0 and 200.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Check that feet is between 0 and 10
-        if(Float.parseFloat(String.valueOf(heightFeet.getText()))< 0 || Float.parseFloat(String.valueOf(heightFeet.getText())) > 10){
-            Toast.makeText(this, "Please enter height feet between 0 and 10.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Check that inches is between 1 and 11
-        if(Float.parseFloat(String.valueOf(heightInches.getText()))< 0 || Float.parseFloat(String.valueOf(heightInches.getText())) > 11){
-            Toast.makeText(this, "Please enter height inches between 0 and 11.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-
-        //Check that currentWeight is between 0 and 1000
-        if(Float.parseFloat(String.valueOf(currentWeight.getText()))< 0 || Float.parseFloat(String.valueOf(currentWeight.getText())) > 1000){
-            Toast.makeText(this, "Please enter current weight between 0 and 1000.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Check that goalWeight is between 0 and 1000
-        if(Float.parseFloat(String.valueOf(goalWeight.getText()))< 0 || Float.parseFloat(String.valueOf(goalWeight.getText())) > 1000){
-            Toast.makeText(this, "Please enter goal weight between 0 and 1000.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Check that goal bmi is between 0 and 100
-        if(Float.parseFloat(String.valueOf(goalBMI.getText()))< 0 || Float.parseFloat(String.valueOf(goalBMI.getText())) > 100){
-            Toast.makeText(this, "Please enter goal bmi between 0 and 100.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Check that goal fat rate is between 0 and 100
-        if(Float.parseFloat(String.valueOf(goalFatRate.getText()))< 0 || Float.parseFloat(String.valueOf(goalFatRate.getText())) > 100){
-            Toast.makeText(this, "Please enter goal fat rate between 0 and 100.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-
 
         Map<String, Object> userInfoUpdates = new HashMap<>();
 
@@ -197,4 +159,98 @@ public class EditUserPersonalInfo extends AppCompatActivity {
     private interface FireStoreCallback {
         void getUserInfoCallback(HashMap userInfo);
     }
+
+
+    private boolean validateAge() {
+        if (editAgeText.isEmpty()) {
+            age.setError("Field can't be empty");
+            return false;
+        } else if (Float.parseFloat(editAgeText) < 0 || Float.parseFloat(editAgeText) > 200) {
+            age.setError("Please enter a age between 0 and 200.");
+            return false;
+        } else {
+            age.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateHeightFeet() {
+        if (editHeightFeetText.isEmpty()) {
+            heightFeet.setError("Field can't be empty");
+            return false;
+        } else if (Float.parseFloat(editHeightFeetText) < 0 || Float.parseFloat(editHeightFeetText) > 10) {
+            heightFeet.setError("Please enter height feet between 0 and 10.");
+            return false;
+        } else {
+            heightFeet.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateHeightInches() {
+        if (editHeightInchesText.isEmpty()) {
+            heightInches.setError("Field can't be empty");
+            return false;
+        } else if (Float.parseFloat(editHeightInchesText) < 0 || Float.parseFloat(editHeightInchesText) > 11) {
+            heightInches.setError("Please enter height inches between 0 and 10.");
+            return false;
+        } else {
+            heightInches.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateCurrentWeight() {
+        if (editCurrentWeightText.isEmpty()) {
+            currentWeight.setError("Field can't be empty");
+            return false;
+        } else if (Float.parseFloat(editCurrentWeightText) < 0 || Float.parseFloat(editCurrentWeightText) > 1000) {
+            currentWeight.setError("Please enter current weight between 0 and 1000.");
+            return false;
+        } else {
+            currentWeight.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateGoalWeight() {
+        if (editGoalWeightText.isEmpty()) {
+            goalWeight.setError("Field can't be empty");
+            return false;
+        } else if (Float.parseFloat(editGoalWeightText) < 0 || Float.parseFloat(editGoalWeightText) > 1000) {
+            goalWeight.setError("Please enter goal weigh between 0 and 1000.");
+            return false;
+        } else {
+            goalWeight.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateGoalBMI() {
+        if (editGoalBMIText.isEmpty()) {
+            goalBMI.setError("Field can't be empty");
+            return false;
+        } else if (Float.parseFloat(editGoalBMIText) < 0 || Float.parseFloat(editGoalBMIText) > 100) {
+            goalBMI.setError("Please enter goal bmi between 0 and 100.");
+            return false;
+        } else {
+            goalBMI.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateGoalFatRate() {
+        if (editGoalFatRateText.isEmpty()) {
+            goalFatRate.setError("Field can't be empty");
+            return false;
+        } else if (Float.parseFloat(editGoalFatRateText) < 0 || Float.parseFloat(editGoalFatRateText) > 100) {
+            goalFatRate.setError("Please enter goal fat rate between 0 and 100.");
+            return false;
+        } else {
+            goalFatRate.setError(null);
+            return true;
+        }
+    }
+
+
 }
