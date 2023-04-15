@@ -84,6 +84,18 @@ public class RecordWeight extends AppCompatActivity {
             return;
         }
 
+        //Check that body weight is between 0 and 1000
+        if(Float.parseFloat(String.valueOf(bodyWeight.getText()))< 0 || Float.parseFloat(String.valueOf(bodyWeight.getText())) > 1000 ){
+            Toast.makeText(this, "Please enter a weight between 0 and 1000.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //Check that body weight is between 0 and 100
+        if(Float.parseFloat(String.valueOf(bodyFat.getText())) < 0 || Float.parseFloat(String.valueOf(bodyFat.getText())) > 100 ){
+            Toast.makeText(this, "Please enter a fat % between 0 and 100.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         //Get inputs from the fields
         bodyWeightValue = String.valueOf(bodyWeight.getText());
         bodyFatValue = String.valueOf(bodyFat.getText());
@@ -96,6 +108,15 @@ public class RecordWeight extends AppCompatActivity {
         info.put("bodyFatPercent", bodyFatValue);
         info.put("public", sharePublicValue);
 
+
+
+
+        //Get current username
+        currentUser = auth.getCurrentUser();
+        String email = currentUser.getEmail();
+        username = email.split("@")[0];
+
+
         //Updates the current user weight in database
         Map<String, Object> userWeightAndFatRateUpdate = new HashMap<>();
 
@@ -107,12 +128,6 @@ public class RecordWeight extends AppCompatActivity {
                 System.out.println("Finished updating user weight and bmi.");
             }
         });
-
-
-        //Get current username
-        currentUser = auth.getCurrentUser();
-        String email = currentUser.getEmail();
-        username = email.split("@")[0];
 
         //Callback function where it get the info to calculate the bmi
         calculateBmiCallBack(new FireStoreCallback() {
