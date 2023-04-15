@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -121,6 +123,59 @@ public class EditUserPersonalInfo extends AppCompatActivity {
         String editGoalBMIText = String.valueOf(goalBMI.getText());
 
 
+        //Checks that the fields are filled out
+        if (TextUtils.isEmpty(age.getText()) || TextUtils.isEmpty(heightFeet.getText()) || TextUtils.isEmpty(heightInches.getText()) || TextUtils.isEmpty(currentWeight.getText())
+                || TextUtils.isEmpty(goalWeight.getText()) || TextUtils.isEmpty(goalBMI.getText()) || TextUtils.isEmpty(goalFatRate.getText())
+        ) {
+            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//Check that age is between 0 and 200
+        if(Float.parseFloat(String.valueOf(age.getText()))< 0 || Float.parseFloat(String.valueOf(age.getText())) > 200){
+            Toast.makeText(this, "Please enter a age between 0 and 200.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Check that feet is between 0 and 10
+        if(Float.parseFloat(String.valueOf(heightFeet.getText()))< 0 || Float.parseFloat(String.valueOf(heightFeet.getText())) > 10){
+            Toast.makeText(this, "Please enter height feet between 0 and 10.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Check that inches is between 1 and 11
+        if(Float.parseFloat(String.valueOf(heightInches.getText()))< 0 || Float.parseFloat(String.valueOf(heightInches.getText())) > 11){
+            Toast.makeText(this, "Please enter height inches between 0 and 11.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        //Check that currentWeight is between 0 and 1000
+        if(Float.parseFloat(String.valueOf(currentWeight.getText()))< 0 || Float.parseFloat(String.valueOf(currentWeight.getText())) > 1000){
+            Toast.makeText(this, "Please enter current weight between 0 and 1000.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Check that goalWeight is between 0 and 1000
+        if(Float.parseFloat(String.valueOf(goalWeight.getText()))< 0 || Float.parseFloat(String.valueOf(goalWeight.getText())) > 1000){
+            Toast.makeText(this, "Please enter goal weight between 0 and 1000.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Check that goal bmi is between 0 and 100
+        if(Float.parseFloat(String.valueOf(goalBMI.getText()))< 0 || Float.parseFloat(String.valueOf(goalBMI.getText())) > 100){
+            Toast.makeText(this, "Please enter goal bmi between 0 and 100.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Check that goal fat rate is between 0 and 100
+        if(Float.parseFloat(String.valueOf(goalFatRate.getText()))< 0 || Float.parseFloat(String.valueOf(goalFatRate.getText())) > 100){
+            Toast.makeText(this, "Please enter goal fat rate between 0 and 100.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+
         Map<String, Object> userInfoUpdates = new HashMap<>();
 
         userInfoUpdates.put("currentWeight", editCurrentWeightText);
@@ -134,7 +189,7 @@ public class EditUserPersonalInfo extends AppCompatActivity {
         reference.child(username).updateChildren(userInfoUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                System.out.println("Finished editing user information");
+                Toast.makeText(getApplicationContext(), "Successfully Edited Your Information", Toast.LENGTH_SHORT).show();
             }
         });
     }
