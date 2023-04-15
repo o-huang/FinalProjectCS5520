@@ -69,13 +69,19 @@ public class Login extends AppCompatActivity {
                 String password;
 
                 username = String.valueOf(editTextUsername.getText());
+                password = String.valueOf(editTextPassword.getText());
 
                 // Setting default password. Note firebase only accept password 6 char long or authentication will fail.
-                password = "123456";
+//                password = "123456";
 
                 //Check that we have inputted a username
                 if (TextUtils.isEmpty(username)) {
                     Toast.makeText(Login.this, "Enter A Username", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(Login.this, "Enter A Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

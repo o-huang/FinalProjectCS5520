@@ -73,13 +73,24 @@ public class Register extends AppCompatActivity {
                 String password;
 
                 username = String.valueOf(editTextUsername.getText());
+                password = String.valueOf(editTextPassword.getText());
 
                 // Setting default password. Note firebase only accept password 6 char long or authentication will fail.
-                password = "123456";
+//                password = "123456";
 
                 //Check that we have inputted a username
                 if (TextUtils.isEmpty(username)) {
                     Toast.makeText(Register.this, "Enter A Username", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(Register.this, "Enter A Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (password.length() <6 ) {
+                    Toast.makeText(Register.this, "Password Has To Be At Least 6 Characters", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
