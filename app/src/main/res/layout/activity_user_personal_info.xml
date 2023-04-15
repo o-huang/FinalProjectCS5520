@@ -1,147 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="40dp"
-    tools:context=".userPersonalInfoActivities.UserPersonalInfo">
-
-    <TextView
-        android:id="@+id/userPersonalInfoTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tell Me About Yourself"
-        android:textColor="#559CD5"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/age"
-        android:layout_width="331dp"
-        android:layout_height="60dp"
-        android:drawableStart="@drawable/ic_baseline_person_pin_24"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="Age"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/heightFeet"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPersonalInfoTitle" />
-
-    <EditText
-        android:id="@+id/heightFeet"
-        android:layout_width="331dp"
-        android:layout_height="60dp"
-        android:drawableStart="@drawable/ic_baseline_height_24"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="Height feet"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/heightInches"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age" />
-
-    <EditText
-        android:id="@+id/heightInches"
-        android:layout_width="331dp"
-        android:layout_height="60dp"
-        android:drawableStart="@drawable/ic_baseline_height_24"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="Height Inches"
-        android:inputType="numberDecimal"
-
-        app:layout_constraintBottom_toTopOf="@+id/currentWeight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heightFeet" />
 
 
-    <EditText
-        android:id="@+id/currentWeight"
-        android:layout_width="331dp"
-        android:layout_height="60dp"
-        android:drawableStart="@drawable/ic_baseline_monitor_weight_24"
-        android:drawablePadding="10dp"
-        android:drawableTint="#559CD5"
-        android:ems="10"
-        android:hint="Current Weight"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/goalWeight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heightInches" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/goalWeight"
-        android:layout_width="331dp"
-        android:layout_height="60dp"
-        android:drawableStart="@drawable/ic_baseline_fact_check_24"
-        android:drawablePadding="10dp"
-        android:drawableTint="#559CD5"
-        android:ems="10"
-        android:hint="Goal weight"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/goalBMI"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentWeight" />
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="40dp"
+        tools:context=".userPersonalInfoActivities.UserPersonalInfo">
 
-    <EditText
-        android:id="@+id/goalBMI"
-        android:layout_width="331dp"
-        android:layout_height="60dp"
-        android:drawableStart="@drawable/ic_baseline_fact_check_24"
-        android:drawablePadding="10dp"
-        android:drawableTint="#559CD5"
-        android:ems="10"
-        android:hint="Goal BMI"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/goalFateRate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalWeight" />
+        <TextView
+            android:id="@+id/userPersonalInfoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tell Me About Yourself"
+            android:textColor="#559CD5"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/goalFateRate"
-        android:layout_width="331dp"
-        android:layout_height="60dp"
-        android:drawableStart="@drawable/ic_baseline_fact_check_24"
-        android:drawablePadding="10dp"
-        android:drawableTint="#559CD5"
-        android:ems="10"
-        android:hint="Goal Fat Rate %"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/personalInfoSubmitButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalBMI" />
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="331dp"
+            android:layout_height="60dp"
+            android:drawableStart="@drawable/ic_baseline_person_pin_24"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="Age"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/heightFeet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userPersonalInfoTitle" />
 
-    <Button
-        android:id="@+id/personalInfoSubmitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#559CD5"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalFateRate" />
+        <EditText
+            android:id="@+id/heightFeet"
+            android:layout_width="331dp"
+            android:layout_height="60dp"
+            android:drawableStart="@drawable/ic_baseline_height_24"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="Height feet"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/heightInches"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/age" />
+
+        <EditText
+            android:id="@+id/heightInches"
+            android:layout_width="331dp"
+            android:layout_height="60dp"
+            android:drawableStart="@drawable/ic_baseline_height_24"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="Height Inches"
+            android:inputType="numberDecimal"
+
+            app:layout_constraintBottom_toTopOf="@+id/currentWeight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/heightFeet" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/currentWeight"
+            android:layout_width="331dp"
+            android:layout_height="60dp"
+            android:drawableStart="@drawable/ic_baseline_monitor_weight_24"
+            android:drawablePadding="10dp"
+            android:drawableTint="#559CD5"
+            android:ems="10"
+            android:hint="Current Weight"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/goalWeight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/heightInches" />
+
+        <EditText
+            android:id="@+id/goalWeight"
+            android:layout_width="331dp"
+            android:layout_height="60dp"
+            android:drawableStart="@drawable/ic_baseline_fact_check_24"
+            android:drawablePadding="10dp"
+            android:drawableTint="#559CD5"
+            android:ems="10"
+            android:hint="Goal weight"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/goalBMI"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/currentWeight" />
+
+        <EditText
+            android:id="@+id/goalBMI"
+            android:layout_width="331dp"
+            android:layout_height="60dp"
+            android:drawableStart="@drawable/ic_baseline_fact_check_24"
+            android:drawablePadding="10dp"
+            android:drawableTint="#559CD5"
+            android:ems="10"
+            android:hint="Goal BMI"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/goalFateRate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goalWeight" />
+
+        <EditText
+            android:id="@+id/goalFateRate"
+            android:layout_width="331dp"
+            android:layout_height="60dp"
+            android:drawableStart="@drawable/ic_baseline_fact_check_24"
+            android:drawablePadding="10dp"
+            android:drawableTint="#559CD5"
+            android:ems="10"
+            android:hint="Goal Fat Rate %"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/personalInfoSubmitButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goalBMI" />
+
+        <Button
+            android:id="@+id/personalInfoSubmitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#559CD5"
+            android:text="Submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goalFateRate" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
