@@ -12,7 +12,7 @@
         android:id="@+id/currentUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="32dp"
         android:text="TextView"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -363,6 +363,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/goal_bmi"
         app:layout_constraintVertical_bias="0.12" />
+
+    <ImageButton
+        android:id="@+id/profile_button"
+        android:layout_width="39dp"
+        android:layout_height="34dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="24dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/person_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

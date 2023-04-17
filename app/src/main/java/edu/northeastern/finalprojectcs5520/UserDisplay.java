@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import edu.northeastern.finalprojectcs5520.authenticationActivities.Login;
 import edu.northeastern.finalprojectcs5520.sharePublicActivity.SharePublic;
+import edu.northeastern.finalprojectcs5520.userPersonalInfoActivities.EditUserPersonalInfo;
 
 public class UserDisplay extends AppCompatActivity {
     TextView currentUserName;
@@ -59,7 +61,7 @@ public class UserDisplay extends AppCompatActivity {
     private Button shareButton;
     private Button historyButton;
     private Button homeButton;
-
+    private ImageButton profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,9 @@ public class UserDisplay extends AppCompatActivity {
 
         reference = FirebaseDatabase.getInstance().getReference();
 
+        profileButton = findViewById(R.id.profile_button);
+
+
         //Check if there is a user. If not goes to login page.
         if (currentUser == null) {
             openLoginPage();
@@ -85,7 +90,6 @@ public class UserDisplay extends AppCompatActivity {
         reference.child("users").child(username).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
 
                 heightFeet = snapshot.child("heightFeet").getValue().toString();
                 heightInches = snapshot.child("heightInches").getValue().toString();
@@ -160,7 +164,6 @@ public class UserDisplay extends AppCompatActivity {
                 updateDifferenceDisplay(diffBMIDisplay, currentBMI, Double.parseDouble(goalBMI));
                 updateDifferenceDisplay(diffFatRateDisplay, Double.parseDouble(currentFatRate), Double.parseDouble(goalFatRate));
 
-
             }
 
             @Override
@@ -174,6 +177,14 @@ public class UserDisplay extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openSharePublicPage();
+            }
+        });
+
+        profileButton = findViewById(R.id.profile_button);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUserInfoPage();
             }
         });
 
@@ -236,5 +247,10 @@ public class UserDisplay extends AppCompatActivity {
         Intent intent = new Intent(this, UserMainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void openUserInfoPage() {
+        Intent intent = new Intent(this, EditUserPersonalInfo.class);
+        startActivity(intent);
     }
 }
