@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
         holder.btnPhoto.setOnClickListener(v -> {
             Intent intent = new Intent(context, CameraActivity.class);
+//            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             Bundle bundle = new Bundle();
             bundle.putInt("position", position);
             bundle.putString("date", record.getDate()); // Pass the date as an extra
