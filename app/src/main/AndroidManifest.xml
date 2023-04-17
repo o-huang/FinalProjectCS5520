@@ -27,6 +27,7 @@ xmlns:tools="http://schemas.android.com/tools">
 
     <activity
         android:name=".userPersonalInfoActivities.EditUserPersonalInfo"
+        android:label="Profile"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -34,6 +35,7 @@ xmlns:tools="http://schemas.android.com/tools">
     </activity>
     <activity
         android:name=".userPersonalInfoActivities.UserPersonalInfo"
+        android:label="Profile"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -45,9 +47,11 @@ xmlns:tools="http://schemas.android.com/tools">
         android:exported="false" />
     <activity
         android:name=".UserDisplay"
+        android:label="User Display"
         android:exported="false" />
     <activity
         android:name=".sharePublicActivity.SharePublic"
+        android:label="Share"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -55,6 +59,7 @@ xmlns:tools="http://schemas.android.com/tools">
     </activity>
     <activity
         android:name=".RecordWeight"
+        android:label="Record Weight"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -62,6 +67,7 @@ xmlns:tools="http://schemas.android.com/tools">
     </activity>
     <activity
         android:name=".MainActivity"
+        android:label="WeightMe"
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -75,6 +81,7 @@ xmlns:tools="http://schemas.android.com/tools">
     </activity>
     <activity
         android:name=".authenticationActivities.Register"
+        android:label="Register"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -82,6 +89,7 @@ xmlns:tools="http://schemas.android.com/tools">
     </activity>
     <activity
         android:name=".authenticationActivities.Login"
+        android:label="Log In"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -89,6 +97,7 @@ xmlns:tools="http://schemas.android.com/tools">
     </activity>
     <activity
         android:name=".UserMainActivity"
+        android:label="Home"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"

@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import edu.northeastern.finalprojectcs5520.authenticationActivities.Login;
 import edu.northeastern.finalprojectcs5520.sharePublicActivity.SharePublic;
+import edu.northeastern.finalprojectcs5520.userPersonalInfoActivities.EditUserPersonalInfo;
 
 public class UserDisplay extends AppCompatActivity {
     TextView currentUserName;
@@ -49,13 +52,16 @@ public class UserDisplay extends AppCompatActivity {
     TextView goalWeightDisplay;
     TextView goalBMIDisplay;
     TextView goalFatRateDisplay;
+    TextView diffWeightDisplay;
+    TextView diffBMIDisplay;
+    TextView diffFatRateDisplay;
 
     String username;
 
     private Button shareButton;
-    private Button diaryButton;
+    private Button historyButton;
     private Button homeButton;
-
+    private ImageButton profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,9 @@ public class UserDisplay extends AppCompatActivity {
 
         reference = FirebaseDatabase.getInstance().getReference();
 
+        profileButton = findViewById(R.id.profile_button);
+
+
         //Check if there is a user. If not goes to login page.
         if (currentUser == null) {
             openLoginPage();
@@ -81,7 +90,6 @@ public class UserDisplay extends AppCompatActivity {
         reference.child("users").child(username).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
 
                 heightFeet = snapshot.child("heightFeet").getValue().toString();
                 heightInches = snapshot.child("heightInches").getValue().toString();
@@ -139,6 +147,23 @@ public class UserDisplay extends AppCompatActivity {
 
                 goalFatRateDisplay = findViewById(R.id.goal_fat_rate);
                 goalFatRateDisplay.setText(goalFatRate + "%");
+
+                Double diffWeight = Double.parseDouble(currentWeight) - Double.parseDouble(goalWeight);
+                Double diffBMI = currentBMI - Double.parseDouble(goalBMI);
+                Double diffFatRate = Double.parseDouble(currentFatRate) - Double.parseDouble(goalFatRate);
+
+                diffWeightDisplay = findViewById(R.id.diff_weight);
+                diffBMIDisplay = findViewById(R.id.diff_bmi);
+                diffFatRateDisplay = findViewById(R.id.diff_fat_rate);
+
+//                diffWeightDisplay.setText(String.format("%.2f", diffWeight) + "lbs");
+//                diffBMIDisplay.setText(String.format("%.2f", diffBMI));
+//                diffFatRateDisplay.setText(String.format("%.2f", diffFatRate) + "%");
+
+                updateDifferenceDisplay(diffWeightDisplay, Double.parseDouble(currentWeight), Double.parseDouble(goalWeight));
+                updateDifferenceDisplay(diffBMIDisplay, currentBMI, Double.parseDouble(goalBMI));
+                updateDifferenceDisplay(diffFatRateDisplay, Double.parseDouble(currentFatRate), Double.parseDouble(goalFatRate));
+
             }
 
             @Override
@@ -155,9 +180,17 @@ public class UserDisplay extends AppCompatActivity {
             }
         });
 
+        profileButton = findViewById(R.id.profile_button);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUserInfoPage();
+            }
+        });
 
-//        diaryButton = findViewById(R.id.diary_button);
-//        diaryButton.setOnClickListener(new View.OnClickListener() {
+
+//        historyButton = findViewById(R.id.history_button);
+//        historyButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
 //                openHistoryPage();
@@ -172,6 +205,24 @@ public class UserDisplay extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void updateDifferenceDisplay(TextView display, double currentValue, double goalValue) {
+        double diff = currentValue - goalValue;
+        String arrow;
+        int color;
+
+        if (diff > 0) {
+            arrow = "↑";
+            color = Color.RED;
+        } else {
+            arrow = "↓";
+            color = Color.GREEN;
+            diff = -diff;
+        }
+
+        display.setText(arrow + String.format("%.2f", diff));
+        display.setTextColor(color);
     }
 
     public void openLoginPage() {
@@ -196,5 +247,10 @@ public class UserDisplay extends AppCompatActivity {
         Intent intent = new Intent(this, UserMainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void openUserInfoPage() {
+        Intent intent = new Intent(this, EditUserPersonalInfo.class);
+        startActivity(intent);
     }
 }
