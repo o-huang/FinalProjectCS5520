@@ -84,21 +84,26 @@ public class EditUserPersonalInfo extends AppCompatActivity {
         getUserInfo(new FireStoreCallback() {
             @Override
             public void getUserInfoCallback(HashMap userInfo) {
-                age.getEditText().setText((CharSequence) userInfo.get("age"));
-                heightFeet.getEditText().setText((CharSequence) userInfo.get("heightFeet"));
-                heightInches.getEditText().setText((CharSequence) userInfo.get("heightInches"));
-                currentWeight.getEditText().setText((CharSequence) userInfo.get("currentWeight"));
-                goalWeight.getEditText().setText((CharSequence) userInfo.get("goalWeight"));
-                goalFatRate.getEditText().setText((CharSequence) userInfo.get("goalFatRate"));
-                goalBMI.getEditText().setText((CharSequence) userInfo.get("goalBMI"));
 
-                //submit changes and save change to database
-                submitButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        saveEditUserInfo();
-                    }
-                });
+                if((boolean)userInfo.get("personalInfoEntered") == false){
+                    Toast.makeText(getApplicationContext(), "Please record a weight before editing personal info.", Toast.LENGTH_LONG).show();
+                }else{
+                    age.getEditText().setText((CharSequence) userInfo.get("age"));
+                    heightFeet.getEditText().setText((CharSequence) userInfo.get("heightFeet"));
+                    heightInches.getEditText().setText((CharSequence) userInfo.get("heightInches"));
+                    currentWeight.getEditText().setText((CharSequence) userInfo.get("currentWeight"));
+                    goalWeight.getEditText().setText((CharSequence) userInfo.get("goalWeight"));
+                    goalFatRate.getEditText().setText((CharSequence) userInfo.get("goalFatRate"));
+                    goalBMI.getEditText().setText((CharSequence) userInfo.get("goalBMI"));
+
+                    //submit changes and save change to database
+                    submitButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            saveEditUserInfo();
+                        }
+                    });
+                }
             }
         });
 

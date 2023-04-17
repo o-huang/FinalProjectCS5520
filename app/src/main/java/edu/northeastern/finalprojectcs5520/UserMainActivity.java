@@ -119,13 +119,6 @@ public class UserMainActivity extends AppCompatActivity {
         });
 
 
-        editUserInfo = findViewById(R.id.editUserInfo);
-        editUserInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openUserInfoPage();
-            }
-        });
 
         achievement = findViewById(R.id.achievements);
         achievement.setOnClickListener(new View.OnClickListener() {
@@ -152,8 +145,6 @@ public class UserMainActivity extends AppCompatActivity {
     }
 
 
-
-
     public void openLoginPage() {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
@@ -178,11 +169,6 @@ public class UserMainActivity extends AppCompatActivity {
 
     public void openUserDisplayPage() {
         Intent intent = new Intent(this, UserDisplay.class);
-        startActivity(intent);
-    }
-
-    public void openUserInfoPage() {
-        Intent intent = new Intent(this, EditUserPersonalInfo.class);
         startActivity(intent);
     }
 
