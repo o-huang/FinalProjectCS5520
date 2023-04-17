@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,11 +50,14 @@ public class UserDisplay extends AppCompatActivity {
     TextView goalWeightDisplay;
     TextView goalBMIDisplay;
     TextView goalFatRateDisplay;
+    TextView diffWeightDisplay;
+    TextView diffBMIDisplay;
+    TextView diffFatRateDisplay;
 
     String username;
 
     private Button shareButton;
-    private Button diaryButton;
+    private Button historyButton;
     private Button homeButton;
 
 
@@ -139,6 +143,24 @@ public class UserDisplay extends AppCompatActivity {
 
                 goalFatRateDisplay = findViewById(R.id.goal_fat_rate);
                 goalFatRateDisplay.setText(goalFatRate + "%");
+
+                Double diffWeight = Double.parseDouble(currentWeight) - Double.parseDouble(goalWeight);
+                Double diffBMI = currentBMI - Double.parseDouble(goalBMI);
+                Double diffFatRate = Double.parseDouble(currentFatRate) - Double.parseDouble(goalFatRate);
+
+                diffWeightDisplay = findViewById(R.id.diff_weight);
+                diffBMIDisplay = findViewById(R.id.diff_bmi);
+                diffFatRateDisplay = findViewById(R.id.diff_fat_rate);
+
+//                diffWeightDisplay.setText(String.format("%.2f", diffWeight) + "lbs");
+//                diffBMIDisplay.setText(String.format("%.2f", diffBMI));
+//                diffFatRateDisplay.setText(String.format("%.2f", diffFatRate) + "%");
+
+                updateDifferenceDisplay(diffWeightDisplay, Double.parseDouble(currentWeight), Double.parseDouble(goalWeight));
+                updateDifferenceDisplay(diffBMIDisplay, currentBMI, Double.parseDouble(goalBMI));
+                updateDifferenceDisplay(diffFatRateDisplay, Double.parseDouble(currentFatRate), Double.parseDouble(goalFatRate));
+
+
             }
 
             @Override
@@ -156,8 +178,8 @@ public class UserDisplay extends AppCompatActivity {
         });
 
 
-//        diaryButton = findViewById(R.id.diary_button);
-//        diaryButton.setOnClickListener(new View.OnClickListener() {
+//        historyButton = findViewById(R.id.history_button);
+//        historyButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
 //                openHistoryPage();
@@ -172,6 +194,24 @@ public class UserDisplay extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void updateDifferenceDisplay(TextView display, double currentValue, double goalValue) {
+        double diff = currentValue - goalValue;
+        String arrow;
+        int color;
+
+        if (diff > 0) {
+            arrow = "↑";
+            color = Color.RED;
+        } else {
+            arrow = "↓";
+            color = Color.GREEN;
+            diff = -diff;
+        }
+
+        display.setText(arrow + String.format("%.2f", diff));
+        display.setTextColor(color);
     }
 
     public void openLoginPage() {
