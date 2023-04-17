@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +22,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import com.bumptech.glide.Glide;
+import android.content.Context;
+
 
 import java.util.ArrayList;
 
@@ -32,6 +39,7 @@ public class HistoryActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private FirebaseDatabase mDatabase;
     private DatabaseReference reference;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +49,7 @@ public class HistoryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         records = new ArrayList<>();
-        adapter = new HistoryAdapter(records);
+        adapter = new HistoryAdapter(this,records);
         recyclerView.setAdapter(adapter);
 
         auth = FirebaseAuth.getInstance();
@@ -58,10 +66,26 @@ public class HistoryActivity extends AppCompatActivity {
                 String recordWeight = dataSnapshot.child("recordWeight").getValue(String.class);
                 String bodyFatPercent = dataSnapshot.child("bodyFatPercent").getValue(String.class);
                 String date = dataSnapshot.getKey();
+                String imageUrl = dataSnapshot.child("imageUrl").getValue(String.class);
 
-                Record record = new Record(recordWeight, bodyFatPercent, date);
-                records.add(record);
-                adapter.notifyDataSetChanged();
+                boolean recordFound = false;
+                for (Record record : records) {
+                    if (record.getDate().equals(date)) {
+                        record.setRecordWeight(recordWeight);
+                        record.setBodyFatPercent(bodyFatPercent);
+                        record.setImageUrl(imageUrl);
+                        adapter.notifyDataSetChanged();
+                        recordFound = true;
+                        break;
+                    }
+                }
+
+                if (!recordFound) {
+                    Record record = new Record(recordWeight, bodyFatPercent, date, imageUrl);
+                    records.add(record);
+                    adapter.notifyDataSetChanged();
+                }
+                Log.d("HistoryActivity", "Image URL: " + imageUrl);
             }
 
             @Override
@@ -82,19 +106,53 @@ public class HistoryActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
+            String imageUrl = data.getStringExtra("image_url");
+            int position = data.getIntExtra("position", -1);
+
+            if (position != -1) {
+                Record record = records.get(position);
+                record.setImageUrl(imageUrl);
+                adapter.notifyItemChanged(position);
+            }
+        }
+    }
+
+
+
     public static class Record {
         private String recordWeight;
         private String bodyFatPercent;
         private String date;
+        private String imageUrl;
+
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+        }
+
 
         public Record() {
             // Default constructor required for calls to DataSnapshot.getValue(Record.class)
         }
 
-        public Record(String recordWeight, String bodyFatPercent, String date) {
+        public Record(String recordWeight, String bodyFatPercent, String date, String imageUrl) {
             this.recordWeight = recordWeight;
             this.bodyFatPercent = bodyFatPercent;
             this.date = date;
+            this.imageUrl = imageUrl;
+
+        }
+        public void setRecordWeight(String recordWeight) {
+            this.recordWeight = recordWeight;
+        }
+
+        public void setBodyFatPercent(String bodyFatPercent) {
+            this.bodyFatPercent = bodyFatPercent;
         }
 
         public String getRecordWeight() {
@@ -108,48 +166,9 @@ public class HistoryActivity extends AppCompatActivity {
         public String getDate() {
             return date;
         }
-    }
 
-    private class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
-
-        private ArrayList<Record> records;
-
-        public HistoryAdapter(ArrayList<Record> records) {
-            this.records = records;
-        }
-
-        @NonNull
-        @Override
-        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.record_item, parent, false);
-            return new MyViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            Record record = records.get(position);
-            holder.recordWeightTextView.setText("Weight: " + record.getRecordWeight());
-            holder.bodyFatTextView.setText("Body Fat Percentage: " + record.getBodyFatPercent());
-            holder.dateTextView.setText("Date: " + record.getDate());
-        }
-
-        @Override
-        public int getItemCount() {
-            return records.size();
-        }
-
-        public class MyViewHolder extends RecyclerView.ViewHolder {
-
-            TextView recordWeightTextView;
-            TextView bodyFatTextView;
-            TextView dateTextView;
-
-            public MyViewHolder(@NonNull View itemView) {
-                super(itemView);
-                recordWeightTextView = itemView.findViewById(R.id.recordWeight);
-                bodyFatTextView = itemView.findViewById(R.id.bodyFat);
-                dateTextView = itemView.findViewById(R.id.date);
-            }
+        public String getImageUrl() {
+            return imageUrl;
         }
     }
 }

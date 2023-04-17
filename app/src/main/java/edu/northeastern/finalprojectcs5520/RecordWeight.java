@@ -89,7 +89,11 @@ public class RecordWeight extends AppCompatActivity {
         String username = email.split("@")[0];
 
         //Save the hashmap we created into user database
-        reference.child(username).child("recordWeights").child(formattedDate).setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+        DatabaseReference recordRef = reference.child(username).child("recordWeights").child(formattedDate);
+        recordRef.child("recordWeight").setValue(bodyWeightValue);
+        recordRef.child("bodyFatPercent").setValue(bodyFatValue);
+        recordRef.child("public").setValue(sharePublicValue).addOnCompleteListener(new OnCompleteListener<Void>() {
+
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
