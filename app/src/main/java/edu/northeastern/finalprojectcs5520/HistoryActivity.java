@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import com.bumptech.glide.Glide;
+
 import android.content.Context;
 
 
@@ -49,7 +50,7 @@ public class HistoryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         records = new ArrayList<>();
-        adapter = new HistoryAdapter(this,records);
+        adapter = new HistoryAdapter(this, records);
         recyclerView.setAdapter(adapter);
 
         auth = FirebaseAuth.getInstance();
@@ -123,7 +124,6 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
 
-
     public static class Record {
         private String recordWeight;
         private String bodyFatPercent;
@@ -147,6 +147,7 @@ public class HistoryActivity extends AppCompatActivity {
             this.imageUrl = imageUrl;
 
         }
+
         public void setRecordWeight(String recordWeight) {
             this.recordWeight = recordWeight;
         }

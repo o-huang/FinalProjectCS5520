@@ -44,9 +44,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         HistoryActivity.Record record = records.get(position);
-        holder.dateTextView.setText("Weight: " + record.getDate());
-        holder.weightTextView.setText("Body Fat Percentage: " + record.getRecordWeight());
-        holder.bodyFatTextView.setText("Date: " + record.getBodyFatPercent());
+
+
+        String[] dateList = record.getDate().split("_");
+
+        String dateCorrectFormat = dateList[0] + "/" + dateList[1] + "/" + dateList[2];
+
+        holder.dateTextView.setText("Date: " + dateCorrectFormat);
+        holder.weightTextView.setText("Weight: " + record.getRecordWeight());
+        holder.bodyFatTextView.setText("Body Fat %: " + record.getBodyFatPercent());
 
         if (record.getImageUrl() != null && !record.getImageUrl().isEmpty()) {
             Glide.with(context)
