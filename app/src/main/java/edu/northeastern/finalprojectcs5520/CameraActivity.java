@@ -122,7 +122,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
             try {
                 photoFile = createImageFile();
@@ -135,7 +135,7 @@ public class CameraActivity extends AppCompatActivity {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
-        }
+//        }
     }
 
     private File createImageFile() throws IOException {
