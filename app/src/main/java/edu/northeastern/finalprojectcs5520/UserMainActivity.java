@@ -116,7 +116,7 @@ public class UserMainActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
+
         editUserInfo = findViewById(R.id.editUserInfo);
         editUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +124,7 @@ public class UserMainActivity extends AppCompatActivity {
                 openUserInfoPage();
             }
         });
-=======
+
         achievement = findViewById(R.id.achievements);
         achievement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,8 +132,6 @@ public class UserMainActivity extends AppCompatActivity {
                 openAchievementPage();
             }
         });
-
->>>>>>> afff31f (init achievement page)
 
     }
 

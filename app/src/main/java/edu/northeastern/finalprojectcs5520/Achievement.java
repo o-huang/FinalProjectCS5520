@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import edu.northeastern.finalprojectcs5520.authenticationActivities.Login;
+
 public class Achievement extends AppCompatActivity {
 
     TextView currentUserName;
@@ -130,16 +132,13 @@ public class Achievement extends AppCompatActivity {
                     params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
                     badgeText.setLayoutParams(params);
                     row.addView(badgeContainer);
-
                 }
 
                 mBadgeLayout.addView(row);
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
