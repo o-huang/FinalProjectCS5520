@@ -28,6 +28,7 @@ public class UserMainActivity extends AppCompatActivity {
     Button logoutButton;
     FirebaseUser currentUser;
     FirebaseAuth auth;
+    Button historyButton;
 
     String username;
     private Button recordWeight;
@@ -39,6 +40,7 @@ public class UserMainActivity extends AppCompatActivity {
     FirebaseDatabase mDatabase;
     DatabaseReference reference;
     Boolean checkPersonalInfo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +135,14 @@ public class UserMainActivity extends AppCompatActivity {
             }
         });
 
+        historyButton = findViewById(R.id.historyButton);
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHistoryPage();
+            }
+        });
+
     }
 
     public void openUserPage() {
@@ -140,6 +150,9 @@ public class UserMainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
+
 
     public void openLoginPage() {
         Intent intent = new Intent(this, Login.class);
@@ -177,5 +190,10 @@ public class UserMainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Achievement.class);
         startActivity(intent);
 
+    }
+
+    public void openHistoryPage() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
     }
 }
