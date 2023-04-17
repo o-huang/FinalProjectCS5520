@@ -65,13 +65,17 @@ public class CameraActivity extends AppCompatActivity {
         position = getIntent().getIntExtra("position", -1);
         recordDate = getIntent().getStringExtra("date"); // Retrieve the date from the intent extras
         if (hasCameraPermission()) {
-            if (hasStoragePermission()) {
-                dispatchTakePictureIntent();
-            } else {
-                requestStoragePermission();
-            }
+            dispatchTakePictureIntent();
+//            if (hasStoragePermission()) {
+//                dispatchTakePictureIntent();
+//                System.err.println("Here1");
+//            } else {
+//                requestStoragePermission();
+//                System.err.println("Here2");
+//            }
         } else {
             requestCameraPermission();
+            System.err.println("Here3");
         }
     }
 
@@ -99,11 +103,11 @@ public class CameraActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (hasStoragePermission()) {
-                    dispatchTakePictureIntent();
-                } else {
-                    requestStoragePermission();
-                }
+//                if (hasStoragePermission()) {
+//                    dispatchTakePictureIntent();
+//                } else {
+//                    requestStoragePermission();
+//                }
             } else {
                 Toast.makeText(this, "Camera permission is required to use the camera.", Toast.LENGTH_SHORT).show();
                 finish();
@@ -121,22 +125,24 @@ public class CameraActivity extends AppCompatActivity {
 
 
     private void dispatchTakePictureIntent() {
+        System.err.println("Hello from dispatchTakePictureIntent()");
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                Log.e("CameraActivity", "Error creating image file", ex);
-            }
+        File photoFile = null;
+        try {
+            photoFile = createImageFile();
+        } catch (IOException ex) {
+            Log.e("CameraActivity", "Error creating image file", ex);
+        }
 
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this, "edu.northeastern.finalprojectcs5520.fileprovider", photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
-//        }
+        if (photoFile != null) {
+            Uri photoURI = FileProvider.getUriForFile(this, "edu.northeastern.finalprojectcs5520.fileprovider", photoFile);
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
+        }
     }
+//    }
 
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());

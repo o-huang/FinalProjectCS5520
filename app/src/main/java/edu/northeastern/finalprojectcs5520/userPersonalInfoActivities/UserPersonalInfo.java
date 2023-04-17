@@ -123,11 +123,16 @@ public class UserPersonalInfo extends AppCompatActivity {
         reference.child(username).updateChildren(userInfoUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                openRecordWeightPage();
                 System.out.println("Finished inputting new user information");
             }
         });
     }
 
+    public void openRecordWeightPage() {
+        Intent intent = new Intent(this, RecordWeight.class);
+        startActivity(intent);
+    }
 
     private boolean validateAge() {
         if (ageText.isEmpty()) {
