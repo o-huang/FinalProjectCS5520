@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,12 +28,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     private Context context;
     private List<HistoryActivity.Record> records;
+    private DatabaseReference reference;
+    private String username;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
 
-    public HistoryAdapter(Context context, List<HistoryActivity.Record> records) {
+    public HistoryAdapter(Context context, List<HistoryActivity.Record> records,DatabaseReference reference, String username) {
         this.context = context;
         this.records = records;
+        this.reference = reference;
+        this.username = username;
     }
 
     @NonNull
@@ -53,6 +59,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.dateTextView.setText("Date: " + dateCorrectFormat);
         holder.weightTextView.setText("Weight: " + record.getRecordWeight());
         holder.bodyFatTextView.setText("Body Fat %: " + record.getBodyFatPercent());
+        holder.bmiTextView.setText("Bmi: " + record.getBmi());
+
+        holder.sharePublicCheckBox.setChecked(record.isPublic());
+        holder.sharePublicCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Update the 'public' field in the database when the checkbox state changes
+            String date = record.getDate();
+            reference.child(username).child("recordWeights").child(date).child("public").setValue(isChecked);
+        });
+
 
         if (record.getImageUrl() != null && !record.getImageUrl().isEmpty()) {
             Glide.with(context)
@@ -84,8 +99,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         TextView dateTextView;
         TextView weightTextView;
         TextView bodyFatTextView;
+        TextView bmiTextView;
         ImageButton btnPhoto;
         ImageView ivProfile;
+        CheckBox sharePublicCheckBox;
 
 
         ViewHolder(View itemView) {
@@ -93,8 +110,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             dateTextView = itemView.findViewById(R.id.dateTextView);
             weightTextView = itemView.findViewById(R.id.weightTextView);
             bodyFatTextView = itemView.findViewById(R.id.bodyFatTextView);
+            bmiTextView = itemView.findViewById(R.id.bmiTextView);
             btnPhoto = itemView.findViewById(R.id.btnPhoto);
             ivProfile = itemView.findViewById(R.id.ivProfile);
+            sharePublicCheckBox = itemView.findViewById(R.id.sharePublicCheckBox);
+            sharePublicCheckBox.setClickable(true);
         }
     }
 }

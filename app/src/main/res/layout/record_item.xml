@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/ivProfile"
         android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_weight="1"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -32,7 +32,7 @@
 
         <LinearLayout
             android:layout_width="175dp"
-            android:layout_height="85dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -56,6 +56,23 @@
                 android:layout_height="wrap_content"
                 android:text="Body Fat"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/bmiTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bmi"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/sharePublicCheckBox"
+                android:layout_width="331dp"
+                android:layout_height="30dp"
+                android:text="Share Public"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"/>
+
         </LinearLayout>
     </LinearLayout>
 

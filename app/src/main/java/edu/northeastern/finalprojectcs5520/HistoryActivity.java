@@ -50,8 +50,6 @@ public class HistoryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         records = new ArrayList<>();
-        adapter = new HistoryAdapter(this, records);
-        recyclerView.setAdapter(adapter);
 
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
@@ -61,6 +59,9 @@ public class HistoryActivity extends AppCompatActivity {
         String email = currentUser.getEmail();
         String username = email.split("@")[0];
 
+        adapter = new HistoryAdapter(HistoryActivity.this, records, reference, username);
+
+        recyclerView.setAdapter(adapter);
         reference.child(username).child("recordWeights").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -68,6 +69,8 @@ public class HistoryActivity extends AppCompatActivity {
                 String bodyFatPercent = dataSnapshot.child("bodyFatPercent").getValue(String.class);
                 String date = dataSnapshot.getKey();
                 String imageUrl = dataSnapshot.child("imageUrl").getValue(String.class);
+                String bmi = dataSnapshot.child("bmi").getValue(String.class);
+                boolean isPublic = dataSnapshot.child("public").getValue(Boolean.class);
 
                 boolean recordFound = false;
                 for (Record record : records) {
@@ -75,6 +78,7 @@ public class HistoryActivity extends AppCompatActivity {
                         record.setRecordWeight(recordWeight);
                         record.setBodyFatPercent(bodyFatPercent);
                         record.setImageUrl(imageUrl);
+                        record.setBmi(bmi);
                         adapter.notifyDataSetChanged();
                         recordFound = true;
                         break;
@@ -82,7 +86,7 @@ public class HistoryActivity extends AppCompatActivity {
                 }
 
                 if (!recordFound) {
-                    Record record = new Record(recordWeight, bodyFatPercent, date, imageUrl);
+                    Record record = new Record(recordWeight, bodyFatPercent, date, bmi, imageUrl, isPublic);
                     records.add(record);
                     adapter.notifyDataSetChanged();
                 }
@@ -128,7 +132,9 @@ public class HistoryActivity extends AppCompatActivity {
         private String recordWeight;
         private String bodyFatPercent;
         private String date;
+        private String bmi;
         private String imageUrl;
+        private boolean isPublic;
 
 
         public void setImageUrl(String imageUrl) {
@@ -140,12 +146,21 @@ public class HistoryActivity extends AppCompatActivity {
             // Default constructor required for calls to DataSnapshot.getValue(Record.class)
         }
 
-        public Record(String recordWeight, String bodyFatPercent, String date, String imageUrl) {
+        public Record(String recordWeight, String bodyFatPercent,  String date, String bmi, String imageUrl,boolean isPublic) {
             this.recordWeight = recordWeight;
             this.bodyFatPercent = bodyFatPercent;
             this.date = date;
+            this.bmi = bmi;
             this.imageUrl = imageUrl;
+            this.isPublic = isPublic;
 
+        }
+
+        public boolean isPublic() {
+            return isPublic;
+        }
+        public void setPublic(boolean isPublic) {
+            this.isPublic = isPublic;
         }
 
         public void setRecordWeight(String recordWeight) {
@@ -170,6 +185,12 @@ public class HistoryActivity extends AppCompatActivity {
 
         public String getImageUrl() {
             return imageUrl;
+        }
+        public String getBmi() {
+            return bmi;
+        }
+        public void setBmi(String bmi) {
+            this.bmi = bmi;
         }
     }
 }
