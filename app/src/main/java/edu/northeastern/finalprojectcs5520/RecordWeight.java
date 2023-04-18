@@ -52,8 +52,6 @@ public class RecordWeight extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_weight);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-
         bodyWeight = findViewById(R.id.bodyWeight);
         bodyFat = findViewById(R.id.bodyFat);
         sharePublic = findViewById(R.id.sharePublic);

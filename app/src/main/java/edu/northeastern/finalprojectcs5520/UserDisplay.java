@@ -67,7 +67,6 @@ public class UserDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_display);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
         auth = FirebaseAuth.getInstance();
         currentUserName = findViewById(R.id.currentUser);
@@ -189,13 +188,13 @@ public class UserDisplay extends AppCompatActivity {
         });
 
 
-//        historyButton = findViewById(R.id.history_button);
-//        historyButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                openHistoryPage();
-//            }
-//        });
+        historyButton = findViewById(R.id.history_button);
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openHistoryPage();
+            }
+        });
 
         homeButton = findViewById(R.id.home_button);
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -237,11 +236,11 @@ public class UserDisplay extends AppCompatActivity {
         finish();
     }
 
-//    public void openHistoryPage() {
-//        Intent intent = new Intent(this, History.class);
-//        startActivity(intent);
-//        finish();
-//    }
+    public void openHistoryPage() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     public void openUserMainPage() {
         Intent intent = new Intent(this, UserMainActivity.class);

@@ -24,6 +24,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:exported="false" />
     <activity
         android:name=".HistoryActivity"
+        android:label="History"
         android:exported="false" />
 
     <activity
