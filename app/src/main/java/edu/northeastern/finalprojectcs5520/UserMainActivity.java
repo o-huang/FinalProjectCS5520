@@ -78,14 +78,13 @@ public class UserMainActivity extends AppCompatActivity {
         recordWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 DatabaseReference userReference = reference.child(username);
 
-                userReference.addValueEventListener(new ValueEventListener() {
+                userReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         checkPersonalInfo = (Boolean) snapshot.child("personalInfoEntered").getValue();
+
 
                         if (checkPersonalInfo) {
                             openRecordWeightPage();
@@ -117,7 +116,6 @@ public class UserMainActivity extends AppCompatActivity {
                 openUserDisplayPage();
             }
         });
-
 
 
         achievement = findViewById(R.id.achievements);
@@ -159,6 +157,7 @@ public class UserMainActivity extends AppCompatActivity {
     public void openRecordWeightPage() {
         Intent intent = new Intent(this, RecordWeight.class);
         startActivity(intent);
+
     }
 
     public void openSharePublicPage() {

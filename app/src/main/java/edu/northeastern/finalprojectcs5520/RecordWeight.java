@@ -118,8 +118,8 @@ public class RecordWeight extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    openUserPage();
                                     Toast.makeText(getApplicationContext(), "Successfully Recorded Weight!", Toast.LENGTH_SHORT).show();
+                                    openUserPage();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Failed To Record Weight!", Toast.LENGTH_SHORT).show();
                                 }
@@ -139,39 +139,8 @@ public class RecordWeight extends AppCompatActivity {
         //Directs user to user page.
         Intent intent = new Intent(this, UserMainActivity.class);
         startActivity(intent);
-//        finish();
+        finish();
     }
-
-//
-//    private void calculateBmiCallBack(FireStoreCallback fireStoreCallback) {
-//        //Get height inches and feet from database and calculates bmi
-//
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                String heightInches = (String) snapshot.child(username).child("heightInches").getValue();
-//                String heightFeet = (String) snapshot.child(username).child("heightFeet").getValue();
-//
-//                float totalHeight = Float.parseFloat(heightInches) + (Float.parseFloat(heightFeet) * 12);
-//
-//                float bmi = (Float.parseFloat(bodyWeightValue) / totalHeight / totalHeight) * 703;
-//
-//                String roundedBmi = String.format("%.2f", bmi);
-//                fireStoreCallback.calculateBmi(roundedBmi);
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                System.out.println("There was error");
-//            }
-//        });
-//    }
-
-//    private interface FireStoreCallback {
-//        void calculateBmi(String bmi);
-//    }
 
     private boolean validateWeight() {
         if (bodyWeightValue.isEmpty()) {
