@@ -192,11 +192,11 @@ public class CameraActivity extends AppCompatActivity {
 
     private void saveImageToGallery(Uri imageUri) {
         ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "New Image");
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, "New Image");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera");
+        values.put(MediaStore.Images.Media.TITLE, "New Image1");
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, "New Image1");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera1");
         values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image1/jpeg");
         values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
 
         Uri externalContentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
