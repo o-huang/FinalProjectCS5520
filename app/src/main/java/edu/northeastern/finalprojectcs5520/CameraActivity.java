@@ -54,6 +54,8 @@ public class CameraActivity extends AppCompatActivity {
     int position;
     String recordDate;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -191,13 +193,20 @@ public class CameraActivity extends AppCompatActivity {
 
 
     private void saveImageToGallery(Uri imageUri) {
+
+//        SimpleDateFormat formatter = new SimpleDateFormat("MM_dd_yyyy");
+        Date date = new Date();
+//        String formattedDate = formatter.format(date);
+
+
         ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "New Image1");
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, "New Image1");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera1");
+        values.put(MediaStore.Images.Media.TITLE, "New Image " +date);
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, "New Image "+date);
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera "+date);
         values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image1/jpeg");
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
         values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
+
 
         Uri externalContentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
