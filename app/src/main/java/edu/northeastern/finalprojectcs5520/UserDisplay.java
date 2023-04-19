@@ -84,7 +84,8 @@ public class UserDisplay extends AppCompatActivity {
             //Getting username from firebase and setting the textview
             String email = currentUser.getEmail();
             username = email.split("@")[0];
-            currentUserName.setText(username);
+            String capitalizedUsername = capitalizeFirstLetter(username);
+            currentUserName.setText(capitalizedUsername);
         }
         reference.child("users").child(username).addValueEventListener(new ValueEventListener() {
             @Override
@@ -204,6 +205,13 @@ public class UserDisplay extends AppCompatActivity {
             }
         });
 
+    }
+
+    private String capitalizeFirstLetter(String input) {
+        if (input == null || input.isEmpty()) {
+        return input;
+    }
+        return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
     }
 
     private void updateDifferenceDisplay(TextView display, double currentValue, double goalValue) {

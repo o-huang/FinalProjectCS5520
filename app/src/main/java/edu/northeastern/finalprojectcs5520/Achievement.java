@@ -60,7 +60,8 @@ public class Achievement extends AppCompatActivity {
             //Getting username from firebase and setting the textview
             String email = currentUser.getEmail();
             username = email.split("@")[0];
-            currentUserName.setText("💪🏻You made it, "+username+"!");
+            String capitalizedUsername = capitalizeFirstLetter(username);
+            currentUserName.setText("💪🏻You made it, "+ capitalizedUsername +"!");
         }
 
         reference.child("users").child(username).addValueEventListener(new ValueEventListener() {
@@ -105,7 +106,7 @@ public class Achievement extends AppCompatActivity {
                     }
                     int milestone = achieved.get(i);
                     ImageView badge = new ImageView(getApplicationContext());
-                    badge.setImageResource(R.drawable.medal_pic_small);
+                    badge.setImageResource(R.drawable.star_small);
 
 
                     badge.setLayoutParams(new LinearLayout.LayoutParams(
@@ -116,10 +117,9 @@ public class Achievement extends AppCompatActivity {
 
                     TextView badgeText = new TextView(getApplicationContext());
                     badgeText.setText(String.valueOf(milestone));
-                    badgeText.setTextColor(Color.BLUE);
-                    badgeText.setPadding(0,0,0,50);
+                    badgeText.setTextColor(Color.BLACK);
+                    badgeText.setPadding(0,25,0,25);
                     badgeText.setTextSize(17);
-
                     RelativeLayout badgeContainer = new RelativeLayout(getApplicationContext());
                     badgeContainer.setLayoutParams(new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -142,6 +142,13 @@ public class Achievement extends AppCompatActivity {
             }
         });
 
+    }
+
+    private String capitalizeFirstLetter(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
+        return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
     }
 
     private void openLoginPage() {

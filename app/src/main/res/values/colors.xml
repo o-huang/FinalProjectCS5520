@@ -17,6 +17,8 @@
     <color name="backgroundColor">#FDF4F5</color>
     <color name="bannerAndButtonColor">#C0DBEA</color>
     <color name="titleColor">#E8A0BF</color>
+    <color name="spareColor">#F5C6EC</color>
+    <color name="bannerAndButtonColorDark">#7149C6</color>
 
     <color name="purple">#BA90C6</color>
 </resources>
