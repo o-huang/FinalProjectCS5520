@@ -10,8 +10,9 @@
         android:id="@+id/currentUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/rancho"
+
         android:text="WeightMe"
+        android:fontFamily="@font/rancho"
         android:textColor="@color/titleColor"
         android:textSize="50sp"
         android:textStyle="bold"

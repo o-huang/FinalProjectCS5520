@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">WeightMe</string>
-    <string name="register">register</string>
-    <string name="username">username</string>
-    <string name="password">password</string>
-    <string name="login">login</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
     <string name="Register">Register</string>
 </resources>

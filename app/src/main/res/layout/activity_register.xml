@@ -14,8 +14,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/register"
+        android:fontFamily="@font/rancho"
+        android:textColor="@color/titleColor"
         android:textAllCaps="true"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -27,6 +29,7 @@
             android:id="@+id/registerUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/purple"
             android:hint="@string/username">
 
 
@@ -41,6 +44,7 @@
             android:id="@+id/registerPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/purple"
             android:hint="@string/password">
 
         </com.google.android.material.textfield.TextInputEditText>
