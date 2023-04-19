@@ -11,4 +11,11 @@
     <color name="badge_stroke_color">#FFFFFF</color>
     <color name="badge_number_background_color">#FF4081</color>
     <color name="badge_number_stroke_color">#FFFFFF</color>
+
+
+
+    <color name="backgroundColor">#FDF4F5</color>
+    <color name="bannerAndButtonColor">#C0DBEA</color>
+    <color name="titleColor">#E8A0BF</color>
+
 </resources>
