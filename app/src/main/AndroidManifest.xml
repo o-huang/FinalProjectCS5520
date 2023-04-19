@@ -16,6 +16,7 @@ xmlns:tools="http://schemas.android.com/tools">
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/Theme.FinalProjectCS5520"
+
     android:enableOnBackInvokedCallback="true"
     tools:targetApi="31">
 

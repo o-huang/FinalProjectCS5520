@@ -24,7 +24,7 @@ import edu.northeastern.finalprojectcs5520.sharePublicActivity.SharePublic;
 
 public class UserMainActivity extends AppCompatActivity {
 
-    TextView currentUserName;
+
     Button logoutButton;
     FirebaseUser currentUser;
     FirebaseAuth auth;
@@ -49,7 +49,7 @@ public class UserMainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         logoutButton = findViewById(R.id.logoutButton);
-        currentUserName = findViewById(R.id.currentUser);
+
         currentUser = auth.getCurrentUser();
 
         mDatabase = FirebaseDatabase.getInstance();
@@ -62,7 +62,7 @@ public class UserMainActivity extends AppCompatActivity {
             //Getting username from firebase and setting the textview
             String email = currentUser.getEmail();
             username = email.split("@")[0];
-            currentUserName.setText(username);
+
         }
 
         //Logout button so that user can logout and return to login page
