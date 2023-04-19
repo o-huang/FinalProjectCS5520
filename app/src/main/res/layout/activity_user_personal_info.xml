@@ -19,8 +19,8 @@
             android:id="@+id/editUserPersonalInfoTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tell Me More About You"
-            android:textColor="#559CD5"
+            android:text="Tell Me More About Yourself"
+            android:textColor="@color/titleColor"
             android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/age"
@@ -35,7 +35,7 @@
             android:layout_width="331dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColorHint="#ff0000"
+            android:textColorHint="@color/purple"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/heightFeet"
@@ -43,6 +43,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editUserPersonalInfoTitle"
+            app:startIconTint="@color/titleColor"
             app:startIconDrawable="@drawable/ic_baseline_person_pin_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -61,7 +62,7 @@
             android:layout_width="331dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColorHint="#ff0000"
+            android:textColorHint="@color/purple"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="true"
 
@@ -70,6 +71,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/age"
+            app:startIconTint="@color/titleColor"
             app:startIconDrawable="@drawable/ic_baseline_height_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -87,7 +89,7 @@
             android:layout_width="331dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColorHint="#ff0000"
+            android:textColorHint="@color/purple"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/currentWeight"
@@ -95,6 +97,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/heightFeet"
+            app:startIconTint="@color/titleColor"
             app:startIconDrawable="@drawable/ic_baseline_height_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -112,7 +115,7 @@
             android:layout_width="331dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColorHint="#ff0000"
+            android:textColorHint="@color/purple"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/goalWeight"
@@ -120,6 +123,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/heightInches"
+            app:startIconTint="@color/titleColor"
             app:startIconDrawable="@drawable/ic_baseline_monitor_weight_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -137,7 +141,7 @@
             android:layout_width="331dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColorHint="#ff0000"
+            android:textColorHint="@color/purple"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/goalBMI"
@@ -145,6 +149,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/currentWeight"
+            app:startIconTint="@color/titleColor"
             app:startIconDrawable="@drawable/ic_baseline_fact_check_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -162,7 +167,7 @@
             android:layout_width="331dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColorHint="#ff0000"
+            android:textColorHint="@color/purple"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/goalFatRate"
@@ -170,6 +175,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goalWeight"
+            app:startIconTint="@color/titleColor"
             app:startIconDrawable="@drawable/ic_baseline_fact_check_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -187,7 +193,7 @@
             android:layout_width="331dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColorHint="#ff0000"
+            android:textColorHint="@color/purple"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/personalInfoSubmitButton"
@@ -195,6 +201,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goalBMI"
+            app:startIconTint="@color/titleColor"
             app:startIconDrawable="@drawable/ic_baseline_fact_check_24">
 
             <com.google.android.material.textfield.TextInputEditText
