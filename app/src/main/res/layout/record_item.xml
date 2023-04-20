@@ -1,79 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
-
-    <ImageView
-        android:id="@+id/ivProfile"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_weight="1"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageButton
-        android:id="@+id/btnPhoto"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@id/ivProfile"
-        android:layout_alignEnd="@id/ivProfile"
-        android:contentDescription="launch camera"
-        android:onClick="selectImageFromGallery"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@id/ivProfile"
-        android:orientation="vertical">
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageButton
+            android:id="@+id/btnPhoto"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@id/ivProfile"
+            android:layout_alignEnd="@id/ivProfile"
+            android:contentDescription="launch camera"
+            android:onClick="selectImageFromGallery"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
 
         <LinearLayout
-            android:layout_width="175dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/ivProfile"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/dateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/weightTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weight"
-                android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/dateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textColor="@color/titleColor"
+                    android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/bodyFatTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Body Fat"
-                android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/weightTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".3"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:textColor="@color/purple"
+                        android:textSize="15sp"
+                        android:text="Weight:"  />
 
-            <TextView
-                android:id="@+id/bmiTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bmi"
-                android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/bodyFatTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".3"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:textColor="@color/purple"
+                        android:textSize="15sp"
+                        android:text="Body fat:" />
 
-            <CheckBox
-                android:id="@+id/sharePublicCheckBox"
-                android:layout_width="331dp"
-                android:layout_height="30dp"
-                android:text="Share Public"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"/>
+                    <TextView
+                        android:id="@+id/bmiTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".3"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:textColor="@color/purple"
+                        android:textSize="15sp"
+                        android:text="Bmi:"/>
+                </LinearLayout>
 
+                <CheckBox
+                    android:id="@+id/sharePublicCheckBox"
+                    android:layout_width="331dp"
+                    android:layout_height="27dp"
+                    android:text="Share Public"
+                    android:textColor="@color/purple"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-</RelativeLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
