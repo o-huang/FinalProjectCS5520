@@ -103,7 +103,7 @@ public class CameraActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 //                if (hasStoragePermission()) {
-//                    dispatchTakePictureIntent();
+                    dispatchTakePictureIntent();
 //                } else {
 //                    requestStoragePermission();
 //                }
