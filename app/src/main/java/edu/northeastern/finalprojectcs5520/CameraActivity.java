@@ -70,14 +70,11 @@ public class CameraActivity extends AppCompatActivity {
             dispatchTakePictureIntent();
 //            if (hasStoragePermission()) {
 //                dispatchTakePictureIntent();
-//                System.err.println("Here1");
 //            } else {
 //                requestStoragePermission();
-//                System.err.println("Here2");
 //            }
         } else {
             requestCameraPermission();
-            System.err.println("Here3");
         }
     }
 
@@ -127,7 +124,6 @@ public class CameraActivity extends AppCompatActivity {
 
 
     private void dispatchTakePictureIntent() {
-        System.err.println("Hello from dispatchTakePictureIntent()");
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
         File photoFile = null;

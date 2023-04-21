@@ -71,8 +71,8 @@ public class Achievement extends AppCompatActivity {
                 for(DataSnapshot record : snapshot.child("recordWeights").getChildren()) {
                     records.add(record);
                 }
-                System.err.println("***********current records num:");
-                System.err.println(records.size());
+                System.out.println("***********current records num:");
+                System.out.println(records.size());
 
                 int[] milestones = {1, 3, 7, 14, 30, 50, 100, 200, 300, 365, 500};
 
@@ -82,8 +82,8 @@ public class Achievement extends AppCompatActivity {
                         achieved.add(milestones[i]);
                     }
                 }
-                System.err.println("*********** <arrayList> achieved");
-                System.err.println(achieved);
+                System.out.println("*********** <arrayList> achieved");
+                System.out.println(achieved);
 
 
                 int badgesPerRow = 4;

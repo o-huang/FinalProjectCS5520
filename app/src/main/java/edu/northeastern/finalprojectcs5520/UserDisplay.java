@@ -109,7 +109,6 @@ public class UserDisplay extends AppCompatActivity {
                     currentFatRate = data.child("bodyFatPercent").getValue().toString();
                     tempWeight = data.child("recordWeight").getValue().toString();
                 }
-                System.err.println("********** currentFatRate " + currentFatRate);
 
                 Double height = Double.parseDouble(heightFeet) * 12 + Double.parseDouble(heightInches);
 
@@ -120,8 +119,6 @@ public class UserDisplay extends AppCompatActivity {
                 } else {
                     currentBMI=0.0;
                 };
-
-                System.err.println("********** currentBMI "+ currentBMI);
 
 
                 // Update the display current weight, BMI, and Fat Rate
