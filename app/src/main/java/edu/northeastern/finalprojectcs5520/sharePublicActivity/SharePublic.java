@@ -31,7 +31,7 @@ public class SharePublic extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_public);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+
 
         sharePublicUserInfoList = new ArrayList<>();
         sharePublicRecyclerView = findViewById(R.id.sharePublicRecyclerView);

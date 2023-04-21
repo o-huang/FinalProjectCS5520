@@ -26,12 +26,13 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".HistoryActivity"
         android:label="History"
-
+        android:screenOrientation="portrait"
         android:exported="false" />
 
     <activity
         android:name=".userPersonalInfoActivities.EditUserPersonalInfo"
         android:label="Profile"
+        android:screenOrientation="portrait"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -40,6 +41,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".userPersonalInfoActivities.UserPersonalInfo"
         android:label="Profile"
+        android:screenOrientation="portrait"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -48,14 +50,17 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".Achievement"
         android:label="Achievement"
+        android:screenOrientation="portrait"
         android:exported="false" />
     <activity
         android:name=".UserDisplay"
         android:label="User Display"
+        android:screenOrientation="portrait"
         android:exported="false" />
     <activity
         android:name=".sharePublicActivity.SharePublic"
         android:label="Share"
+        android:screenOrientation="portrait"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -64,6 +69,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".RecordWeight"
         android:label="Record Weight"
+        android:screenOrientation="portrait"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -72,6 +78,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".MainActivity"
         android:label="WeightMe"
+        android:screenOrientation="portrait"
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -86,6 +93,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".authenticationActivities.Register"
         android:label="Register"
+        android:screenOrientation="portrait"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -94,6 +102,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".authenticationActivities.Login"
         android:label="Log In"
+        android:screenOrientation="portrait"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
@@ -102,6 +111,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".UserMainActivity"
         android:label="Home"
+        android:screenOrientation="portrait"
         android:exported="false">
         <meta-data
             android:name="android.app.lib_name"

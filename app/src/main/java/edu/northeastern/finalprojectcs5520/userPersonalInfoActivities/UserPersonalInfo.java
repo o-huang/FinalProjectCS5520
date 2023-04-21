@@ -60,7 +60,7 @@ public class UserPersonalInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_personal_info);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+
         //Instance of database
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();

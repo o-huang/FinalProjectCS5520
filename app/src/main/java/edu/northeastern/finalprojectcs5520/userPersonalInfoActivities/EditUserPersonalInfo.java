@@ -59,7 +59,7 @@ public class EditUserPersonalInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_personal_info);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+
         //Instance of database
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
