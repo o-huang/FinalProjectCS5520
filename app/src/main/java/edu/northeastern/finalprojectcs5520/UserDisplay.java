@@ -238,13 +238,11 @@ public class UserDisplay extends AppCompatActivity {
     public void openSharePublicPage() {
         Intent intent = new Intent(this, SharePublic.class);
         startActivity(intent);
-        finish();
     }
 
     public void openHistoryPage() {
         Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
-        finish();
     }
 
     public void openUserMainPage() {
