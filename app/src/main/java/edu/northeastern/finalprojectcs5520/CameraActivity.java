@@ -39,6 +39,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import edu.northeastern.finalprojectcs5520.sharePublicActivity.SharePublic;
+
 public class CameraActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -53,7 +55,6 @@ public class CameraActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     int position;
     String recordDate;
-
 
 
     @Override
@@ -76,7 +77,10 @@ public class CameraActivity extends AppCompatActivity {
         } else {
             requestCameraPermission();
         }
+
     }
+
+
 
 
     private void requestCameraPermission() {
@@ -139,6 +143,8 @@ public class CameraActivity extends AppCompatActivity {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 
         }
+
+
     }
 //    }
 

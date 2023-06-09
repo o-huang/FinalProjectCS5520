@@ -30,6 +30,8 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
+import edu.northeastern.finalprojectcs5520.sharePublicActivity.SharePublic;
+
 public class HistoryActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -110,6 +112,7 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
